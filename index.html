@@ -268,7 +268,7 @@
               <div class="figure-scroll">
               <svg class="arch-svg arch-diagram" viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture: Expo mobile and Next.js CMS connect to NestJS API, which connects to PostgreSQL, Redis, Clerk, Stripe, and S3">
                 <defs>
-                  <path id="arch-pulse-path" d="M120 70 L120 118 L460 118 L460 196 L200 196 L200 280"/>
+                  <path id="arch-pulse-path" d="M120 86 L120 118 L230 118 L230 166 L230 224 L120 224 L120 280"/>
                 </defs>
                 <text class="arch-band-label" x="20" y="22">Clients</text>
                 <rect class="arch-box arch-node" x="20" y="34" width="200" height="52"/>
@@ -278,10 +278,10 @@
                 <text class="arch-label" x="254" y="56">Next.js CMS</text>
                 <text class="arch-sub" x="254" y="74">API key + HMAC</text>
 
-                <line class="arch-line arch-flow" x1="120" y1="86" x2="120" y2="118"/>
-                <line class="arch-line arch-flow" x1="340" y1="86" x2="340" y2="118"/>
-                <line class="arch-line arch-flow" x1="120" y1="118" x2="460" y2="118"/>
-                <line class="arch-line arch-flow" x1="290" y1="118" x2="290" y2="136"/>
+                <line class="arch-line" x1="120" y1="86" x2="120" y2="118"/>
+                <line class="arch-line" x1="340" y1="86" x2="340" y2="118"/>
+                <line class="arch-line arch-flow" x1="120" y1="118" x2="340" y2="118"/>
+                <line class="arch-line arch-flow" x1="230" y1="118" x2="230" y2="166"/>
 
                 <text class="arch-band-label" x="20" y="154">NestJS API · port 3001</text>
                 <rect class="arch-box-accent arch-node" x="20" y="166" width="880" height="58"/>
@@ -294,9 +294,11 @@
                 <text class="arch-sub" x="430" y="208">Stripe + Clerk</text>
                 <text class="arch-sub" x="620" y="208">catalog + probes</text>
 
-                <line class="arch-line arch-flow" x1="200" y1="224" x2="200" y2="250"/>
-                <line class="arch-line arch-flow" x1="460" y1="224" x2="460" y2="250"/>
-                <line class="arch-line arch-flow" x1="720" y1="224" x2="720" y2="250"/>
+                <line class="arch-line arch-flow" x1="120" y1="224" x2="120" y2="280"/>
+                <line class="arch-line arch-flow" x1="340" y1="224" x2="340" y2="280"/>
+                <line class="arch-line arch-flow" x1="545" y1="224" x2="545" y2="280"/>
+                <line class="arch-line arch-flow" x1="695" y1="224" x2="695" y2="280"/>
+                <line class="arch-line arch-flow" x1="840" y1="224" x2="840" y2="280"/>
 
                 <text class="arch-band-label" x="20" y="268">Data</text>
                 <text class="arch-band-label" x="480" y="268">External</text>
@@ -312,7 +314,9 @@
                 <text class="arch-label" x="794" y="308">S3</text>
 
                 <circle class="arch-pulse" r="4" aria-hidden="true">
-                  <animateMotion dur="4s" repeatCount="indefinite" path="M120 70 L120 118 L460 118 L460 196 L200 196 L200 280"/>
+                  <animateMotion dur="5s" repeatCount="indefinite">
+                    <mpath href="#arch-pulse-path"/>
+                  </animateMotion>
                 </circle>
               </svg>
               </div>
@@ -429,28 +433,28 @@
                   <text class="arch-label" x="34" y="62">Auth</text>
                   <text class="arch-sub" x="34" y="78">JWT · key · sig</text>
 
-                  <line class="arch-line arch-flow" x1="150" y1="66" x2="175" y2="66"/>
+                  <line class="arch-line" x1="150" y1="66" x2="175" y2="66"/>
                   <polygon class="arch-arrow" points="175,66 168,62 168,70"/>
 
                   <rect class="arch-box arch-node" x="180" y="40" width="130" height="52"/>
                   <text class="arch-label" x="194" y="62">Zod parse</text>
                   <text class="arch-sub" x="194" y="78">shared schemas</text>
 
-                  <line class="arch-line arch-flow" x1="310" y1="66" x2="335" y2="66"/>
+                  <line class="arch-line" x1="310" y1="66" x2="335" y2="66"/>
                   <polygon class="arch-arrow" points="335,66 328,62 328,70"/>
 
                   <rect class="arch-box arch-node" x="340" y="40" width="150" height="52"/>
                   <text class="arch-label" x="354" y="62">Scope check</text>
                   <text class="arch-sub" x="354" y="78">active course</text>
 
-                  <line class="arch-line arch-flow" x1="490" y1="66" x2="515" y2="66"/>
+                  <line class="arch-line" x1="490" y1="66" x2="515" y2="66"/>
                   <polygon class="arch-arrow" points="515,66 508,62 508,70"/>
 
                   <rect class="arch-box-accent arch-node" x="520" y="40" width="170" height="52"/>
                   <text class="arch-label" x="534" y="62">Transaction</text>
                   <text class="arch-sub" x="534" y="78">atomic commit</text>
 
-                  <line class="arch-line arch-flow" x1="690" y1="66" x2="715" y2="66"/>
+                  <line class="arch-line" x1="690" y1="66" x2="715" y2="66"/>
                   <polygon class="arch-arrow" points="715,66 708,62 708,70"/>
 
                   <rect class="arch-box arch-node" x="720" y="40" width="160" height="52"/>
@@ -485,28 +489,28 @@
                   <rect class="arch-box arch-node" x="20" y="40" width="120" height="46"/>
                   <text class="arch-label" x="34" y="68">Expo mobile</text>
 
-                  <line class="arch-line arch-flow" x1="140" y1="63" x2="175" y2="63"/>
+                  <line class="arch-line" x1="140" y1="63" x2="175" y2="63"/>
                   <text class="arch-edge-label" x="142" y="55">request</text>
 
                   <rect class="arch-box-accent arch-node" x="180" y="40" width="130" height="46"/>
                   <text class="arch-label" x="194" y="68">NestJS API</text>
 
-                  <line class="arch-line arch-flow" x1="310" y1="63" x2="345" y2="63"/>
+                  <line class="arch-line" x1="310" y1="63" x2="345" y2="63"/>
                   <text class="arch-edge-label" x="312" y="55">1. GET key</text>
 
                   <rect class="arch-box arch-node" x="350" y="40" width="110" height="46"/>
                   <text class="arch-label" x="364" y="68">Redis</text>
 
-                  <path class="arch-line arch-flow" d="M405 86 L405 120 L245 120 L245 86" stroke-dasharray="4 3"/>
+                  <path class="arch-line arch-flow" d="M405 86 L405 120 L245 120 L245 86"/>
                   <text class="arch-edge-label" x="280" y="115">2a. hit → response</text>
 
-                  <line class="arch-line arch-flow" x1="460" y1="63" x2="495" y2="63" stroke-dasharray="4 3"/>
+                  <line class="arch-line" x1="460" y1="63" x2="495" y2="63"/>
                   <text class="arch-edge-label" x="462" y="55">2b. miss</text>
 
                   <rect class="arch-box arch-node" x="500" y="40" width="130" height="46"/>
                   <text class="arch-label" x="514" y="68">PostgreSQL</text>
 
-                  <path class="arch-line arch-flow" d="M565 86 L565 145 L405 145 L405 86" stroke-dasharray="4 3"/>
+                  <path class="arch-line arch-flow" d="M565 86 L565 145 L405 145 L405 86"/>
                   <text class="arch-edge-label" x="430" y="140">3. hydrate + SETEX</text>
 
                   <text class="arch-band-label" x="20" y="190">Write invalidation</text>
