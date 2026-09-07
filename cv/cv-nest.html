@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salah Joja — CV (NestJS / Node)</title>
+    <link rel="stylesheet" href="cv.css" />
+  </head>
+  <body>
+    <p class="print-hint">
+      Print or Save as PDF: Ctrl+P → Destination: Save as PDF · Margins: Default
+    </p>
+
+    <article class="cv">
+      <header>
+        <h1>Salah Joja</h1>
+        <p class="subtitle">Junior Backend Engineer · NestJS / Node.js / TypeScript</p>
+        <div class="contact">
+          <span>Damascus, Syria · UTC+3</span>
+          <a href="mailto:salahjoja@gmail.com">salahjoja@gmail.com</a>
+          <a href="https://github.com/Salad-man3">github.com/Salad-man3</a>
+          <a href="https://www.linkedin.com/in/salah-joja/">linkedin.com/in/salah-joja</a>
+        </div>
+        <p class="meta-line">
+          Fully remote · flexible hours (worldwide overlap) · Open to work
+        </p>
+      </header>
+
+      <section>
+        <h2>Professional Summary</h2>
+        <p class="summary">
+          Junior backend engineer who shipped a NestJS learning-platform API from
+          scratch — 54 routes, PostgreSQL, Redis, Docker, and ~200 automated
+          tests (pre-launch, validated locally). Focus on data integrity,
+          OpenAPI/Swagger documentation, CI/CD, and shared Zod validation. Based
+          in Damascus (UTC+3), fully remote.
+        </p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+        <div class="job">
+          <div class="job-header">
+            <h3 class="job-title">Software Engineer</h3>
+            <span class="job-date">7 months · 2025–2026</span>
+          </div>
+          <p class="job-org">Ghaya Go / Tayf — Bilingual language-learning platform (ghayaplatform.com)</p>
+          <p class="job-note">
+            Pre-launch · private monorepo · Stripe test mode
+          </p>
+          <ul>
+            <li>
+              Shipped a NestJS API from scratch — 54 HTTP routes with Clerk JWT
+              and CMS service auth, serving 2 clients (Expo mobile and Next.js
+              CMS) in a Turborepo monorepo.
+            </li>
+            <li>
+              Modeled the curriculum domain (Course → Module → Lesson/Quiz → Task)
+              across 10 SQL migrations in Sequelize, with transactional
+              publish/delete so content cannot land half-applied.
+            </li>
+            <li>
+              Cut mobile cold-load from ~4–5 API calls to ~2 with Redis
+              cache-aside (typed keys, TTLs, prefix invalidation) and an
+              aggregated learn-window endpoint.
+            </li>
+            <li>
+              Prevented duplicate Stripe subscription writes in test mode via
+              webhook signature checks, event-ID deduplication, and idempotent
+              upserts; locked gamification progress with transactional writes and
+              uniqueness constraints.
+            </li>
+            <li>
+              Documented and tested the API with OpenAPI/Swagger and ~200
+              automated tests; shared Zod schemas across API, CMS, and mobile;
+              CI/CD with Docker images to GHCR and health probes.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <div class="project">
+          <p class="project-name">
+            Ribat · Multi-Tenant Education Operations Platform · in progress
+          </p>
+          <p>
+            Building an offline-first, bilingual (English/Arabic) education SaaS
+            with NestJS, PostgreSQL, Prisma, and React PWA — multi-tenancy,
+            contextual authorization, offline attendance, and real academic
+            workflows for community schools and after-school programs.
+          </p>
+        </div>
+        <div class="project">
+          <p class="project-name">
+            <a href="https://github.com/Salad-man3/T-_Project">T-_Project</a>
+            · Laravel REST API · course graduation project
+          </p>
+          <p>
+            Public Laravel REST API for a citizen–municipality portal — Sanctum
+            auth, CRUD, validation, soft deletes, and
+            <a href="https://documenter.getpostman.com/view/36834914/2sAXxLBZom">Postman/OpenAPI docs</a>.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <div class="skills-list">
+          <p class="skill-row"><strong>Languages:</strong> TypeScript, JavaScript, SQL</p>
+          <p class="skill-row"><strong>Backend:</strong> NestJS, Node.js, REST API design, OpenAPI/Swagger</p>
+          <p class="skill-row"><strong>Data:</strong> PostgreSQL, Sequelize, Prisma, Redis</p>
+          <p class="skill-row"><strong>Validation:</strong> Zod, shared schema packages</p>
+          <p class="skill-row"><strong>Auth &amp; billing:</strong> Clerk, Stripe webhooks</p>
+          <p class="skill-row"><strong>Testing:</strong> Jest, Supertest, ~200 backend tests</p>
+          <p class="skill-row"><strong>DevOps:</strong> Docker, GitHub Actions, CI/CD, health probes</p>
+          <p class="skill-row"><strong>Tools:</strong> Git, Turborepo, pnpm</p>
+          <p class="skill-row"><strong>Professional:</strong> Written communication, teamwork, ownership, adaptability</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <p class="summary" style="margin: 0; font-size: 0.88rem; color: #666">
+          <strong>Damascus University</strong> — B.S. candidate, Faculty of
+          Information Technology Engineering (ITE) · Expected 2028<br />
+          Relevant coursework: Databases, Software Engineering, Web Development
+        </p>
+      </section>
+    </article>
+  </body>
+</html>
