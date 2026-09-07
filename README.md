@@ -1,8 +1,8 @@
 # Salah Joja — Portfolio
 
-Static portfolio site for [Salah Joja](https://github.com/Salad-man3).
+Static portfolio site for [Salah Joja](https://github.com/salahjoja).
 
-Live at **https://salad-man3.github.io**
+Live at **https://salahjoja.github.io**
 
 ## Contents
 
