@@ -104,7 +104,10 @@
 
       <section id="work" class="panel">
         <div class="shell">
-          <h2 class="section-title">Selected work</h2>
+          <header class="section-head">
+            <p class="section-kicker">Work</p>
+            <h2 class="section-title">Selected work</h2>
+          </header>
           <ol class="row-list">
             <li class="row-item">
               <span class="row-num">01</span>
@@ -128,7 +131,10 @@
 
       <section id="stack" class="panel">
         <div class="shell">
-          <h2 class="section-title">Stack</h2>
+          <header class="section-head">
+            <p class="section-kicker">Stack</p>
+            <h2 class="section-title">Technologies</h2>
+          </header>
 
           <div class="stack-block">
             <h3>Backend</h3>
@@ -250,8 +256,11 @@
 
       <section id="case-study" class="panel">
         <div class="shell">
-          <h2 class="section-title">Ghaya Go / Tayf</h2>
-          <p class="case-meta">Primary backend · Pre-launch · Modular monolith</p>
+          <header class="section-head">
+            <p class="section-kicker">Case study</p>
+            <h2 class="section-title">Ghaya Go / Tayf</h2>
+            <p class="section-lead">Primary backend · Pre-launch · Modular monolith</p>
+          </header>
 
           <div class="case-block">
             <h3>System context</h3>
@@ -264,9 +273,9 @@
               28 CMS write, plus public catalog, webhooks, and health.
             </p>
             <figure class="figure reveal" data-reveal>
-              <figcaption class="figure-caption">Fig. 1 — System architecture. Scroll horizontally on small screens.</figcaption>
+              <figcaption class="figure-caption">Fig. 1 — System architecture</figcaption>
               <div class="figure-scroll">
-              <svg class="arch-svg arch-diagram" viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture: Expo mobile and Next.js CMS connect to NestJS API, which connects to PostgreSQL, Redis, Clerk, Stripe, and S3">
+              <svg class="arch-svg arch-diagram" viewBox="0 0 920 340" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture: Expo mobile and Next.js CMS connect to NestJS API, which connects to PostgreSQL, Redis, Clerk, Stripe, and S3">
                 <defs>
                   <path id="arch-pulse-path" d="M120 86 L120 118 L230 118 L230 166 L230 224 L120 224 L120 280"/>
                 </defs>
@@ -424,9 +433,9 @@
               pipeline. Multi-step writes run inside <code>sequelize.transaction()</code>.
             </p>
             <figure class="figure">
-              <figcaption class="figure-caption">Fig. 2 — Write pipeline. Scroll horizontally on small screens.</figcaption>
+              <figcaption class="figure-caption">Fig. 2 — Write pipeline</figcaption>
               <div class="figure-scroll">
-                <svg class="arch-svg pipeline-svg" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Write path: auth, Zod validation, resource scoping, transaction, cache invalidation">
+                <svg class="arch-svg pipeline-svg" viewBox="0 0 900 200" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Write path: auth, Zod validation, resource scoping, transaction, cache invalidation">
                   <text class="arch-band-label" x="20" y="22">Every mutating request</text>
 
                   <rect class="arch-box arch-node" x="20" y="40" width="130" height="52"/>
@@ -481,9 +490,9 @@
               the cache hit — shuffled order is never stored in Redis.
             </p>
             <figure class="figure">
-              <figcaption class="figure-caption">Fig. 3 — Read path and cache-aside. Scroll horizontally on small screens.</figcaption>
+              <figcaption class="figure-caption">Fig. 3 — Read path and cache-aside</figcaption>
               <div class="figure-scroll">
-                <svg class="arch-svg cache-svg" viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cache-aside read path: mobile to API to Redis, miss falls through to PostgreSQL, writes invalidate by prefix">
+                <svg class="arch-svg cache-svg" viewBox="0 0 900 280" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cache-aside read path: mobile to API to Redis, miss falls through to PostgreSQL, writes invalidate by prefix">
                   <text class="arch-band-label" x="20" y="22">Read path</text>
 
                   <rect class="arch-box arch-node" x="20" y="40" width="120" height="46"/>
@@ -642,8 +651,11 @@
 
       <section id="broke" class="panel">
         <div class="shell">
-          <h2 class="section-title reveal" data-reveal>What broke</h2>
-          <p class="case-meta reveal" data-reveal>Real bugs from Ghaya — not hypothetical war stories.</p>
+          <header class="section-head reveal" data-reveal>
+            <p class="section-kicker">Debug log</p>
+            <h2 class="section-title">What broke</h2>
+            <p class="section-lead">Real bugs from Ghaya — not hypothetical war stories.</p>
+          </header>
 
           <ol class="incident-list">
             <li class="incident reveal" data-reveal style="--i: 0">
@@ -707,7 +719,10 @@
 
       <section id="projects" class="panel">
         <div class="shell">
-          <h2 class="section-title">Other work</h2>
+          <header class="section-head">
+            <p class="section-kicker">Projects</p>
+            <h2 class="section-title">Other work</h2>
+          </header>
           <ol class="row-list">
             <li class="row-item">
               <span class="row-num">01</span>
@@ -735,7 +750,10 @@
 
       <section id="contact" class="panel">
         <div class="shell">
-          <h2 class="section-title">Contact</h2>
+          <header class="section-head">
+            <p class="section-kicker">Contact</p>
+            <h2 class="section-title">Get in touch</h2>
+          </header>
           <p class="contact-lead">
             Backend engineering roles, collaborations, or technical discussions.
           </p>
