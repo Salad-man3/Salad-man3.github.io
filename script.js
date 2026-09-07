@@ -138,4 +138,53 @@
       observer.observe(item.el);
     });
   }
+
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var revealElements = document.querySelectorAll("[data-reveal]");
+
+  function showReveals(elements) {
+    elements.forEach(function (el) {
+      el.classList.add("is-visible");
+    });
+  }
+
+  if (revealElements.length) {
+    if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+      showReveals(revealElements);
+    } else {
+      var heroReveals = document.querySelectorAll(".hero-sequence [data-reveal]");
+      showReveals(heroReveals);
+
+      var revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -8% 0px",
+          threshold: 0.08,
+        },
+      );
+
+      revealElements.forEach(function (el) {
+        if (!el.closest(".hero-sequence")) {
+          revealObserver.observe(el);
+        }
+      });
+    }
+  }
+
+  var verboseToggle = document.getElementById("verbose-toggle");
+
+  if (verboseToggle) {
+    verboseToggle.addEventListener("click", function () {
+      var enabled = document.documentElement.classList.toggle("verbose");
+      verboseToggle.setAttribute("aria-pressed", String(enabled));
+    });
+  }
 })();
