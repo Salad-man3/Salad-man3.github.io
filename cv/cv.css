@@ -1,0 +1,261 @@
+/* Print-ready CV · A4 */
+
+@page {
+  size: A4;
+  margin: 14mm 16mm;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10.5pt;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+.cv {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media screen {
+  body {
+    background: #e8eaed;
+    padding: 1.5rem 1rem;
+  }
+
+  .cv {
+    background: #fff;
+    padding: 14mm 16mm;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  }
+}
+
+h1 {
+  margin: 0 0 0.15rem;
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0d1117;
+}
+
+.subtitle {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0969da;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.contact a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}
+
+.meta-line {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.summary {
+  margin: 0 0 1.1rem;
+  font-size: 0.92rem;
+  color: #333;
+  max-width: 72ch;
+}
+
+section {
+  margin-bottom: 1rem;
+}
+
+h2 {
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0969da;
+  border-bottom: 1px solid #d0d7de;
+  padding-bottom: 0.2rem;
+}
+
+.job {
+  margin-bottom: 0.85rem;
+}
+
+.job-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.job-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0d1117;
+}
+
+.job-date {
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.job-org {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  color: #444;
+  font-style: italic;
+}
+
+.job-note {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  color: #666;
+}
+
+ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+li {
+  margin-bottom: 0.28rem;
+  font-size: 0.88rem;
+  color: #333;
+}
+
+li::marker {
+  color: #0969da;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.35rem 1.5rem;
+  font-size: 0.85rem;
+}
+
+.skills-list {
+  display: block;
+  font-size: 0.85rem;
+}
+
+.skills-list .skill-row + .skill-row {
+  margin-top: 0.35rem;
+}
+
+.skill-row {
+  margin: 0;
+}
+
+.skill-row strong {
+  color: #0d1117;
+}
+
+.project {
+  margin-bottom: 0.6rem;
+}
+
+.project-name {
+  margin: 0 0 0.1rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.project-name a {
+  color: #0d1117;
+  text-decoration: none;
+}
+
+.project-name a:hover {
+  color: #0969da;
+}
+
+.project p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.print-hint {
+  display: none;
+}
+
+@media screen {
+  .print-hint {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+}
+
+@media print {
+  .print-hint {
+    display: none !important;
+  }
+
+  html {
+    font-size: 9.75pt;
+  }
+
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .cv {
+    box-shadow: none;
+    padding: 0;
+  }
+
+  section {
+    margin-bottom: 0.65rem;
+  }
+
+  .summary {
+    margin-bottom: 0.65rem;
+  }
+
+  li {
+    margin-bottom: 0.15rem;
+  }
+
+  .job-note {
+    margin-bottom: 0.2rem;
+  }
+
+  a {
+    color: #0d1117;
+  }
+}
