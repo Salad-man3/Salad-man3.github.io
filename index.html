@@ -77,6 +77,7 @@
           <a href="#work" data-nav>Work</a>
           <a href="#stack" data-nav>Stack</a>
           <a href="#case-study" data-nav>Case study</a>
+          <a href="#broke" data-nav>What broke</a>
           <a href="#projects" data-nav>Projects</a>
           <a href="#contact" data-nav>Contact</a>
           <a href="cv/cv-nest.html" target="_blank" rel="noopener">CV</a>
@@ -87,16 +88,17 @@
 
     <main id="main">
       <section id="top" class="panel hero-panel">
-        <div class="shell">
-          <p class="kicker">Backend engineer</p>
-          <h1>Salah Joja</h1>
-          <p class="role-line">NestJS · PostgreSQL · Redis · TypeScript · REST</p>
-          <p class="lede">
-            I design and build APIs with clear boundaries, transactional data
-            integrity, and shared validation across clients. My strongest work
-            is turning product workflows into maintainable backend systems.
+        <div class="shell hero-sequence">
+          <p class="kicker reveal" data-reveal style="--i: 0">Backend engineer</p>
+          <h1 class="reveal" data-reveal style="--i: 1">Salah Joja</h1>
+          <p class="role-line reveal" data-reveal style="--i: 2">NestJS · PostgreSQL · Redis · TypeScript · REST</p>
+          <p class="lede reveal" data-reveal style="--i: 3">
+            I build APIs where the interesting parts are the boundaries — who can
+            call what, what commits atomically, and what gets cached. I like
+            finding the bugs that only show up when two clients hit the same
+            endpoint at once.
           </p>
-          <a class="cta" href="#case-study">Read the Ghaya case study</a>
+          <a class="cta reveal" data-reveal style="--i: 4" href="#case-study">Read the Ghaya case study</a>
         </div>
       </section>
 
@@ -191,7 +193,7 @@
                   <img src="assets/icons/prisma.svg" alt="" width="22" height="22" />
                   Prisma
                 </dt>
-                <dd>CMS auth tables on the same Postgres instance</dd>
+                <dd>CMS editorial auth on the same Postgres instance</dd>
               </div>
               <div>
                 <dt>
@@ -261,25 +263,28 @@
               The surface is 54+ HTTP routes across six controllers: 22 learner,
               28 CMS write, plus public catalog, webhooks, and health.
             </p>
-            <figure class="figure">
+            <figure class="figure reveal" data-reveal>
               <figcaption class="figure-caption">Fig. 1 — System architecture. Scroll horizontally on small screens.</figcaption>
-              <div class="erd-scroll">
-              <svg class="arch-svg" viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture: Expo mobile and Next.js CMS connect to NestJS API, which connects to PostgreSQL, Redis, Clerk, Stripe, and S3">
+              <div class="figure-scroll">
+              <svg class="arch-svg arch-diagram" viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture: Expo mobile and Next.js CMS connect to NestJS API, which connects to PostgreSQL, Redis, Clerk, Stripe, and S3">
+                <defs>
+                  <path id="arch-pulse-path" d="M120 70 L120 118 L460 118 L460 196 L200 196 L200 280"/>
+                </defs>
                 <text class="arch-band-label" x="20" y="22">Clients</text>
-                <rect class="arch-box" x="20" y="34" width="200" height="52"/>
+                <rect class="arch-box arch-node" x="20" y="34" width="200" height="52"/>
                 <text class="arch-label" x="34" y="56">Expo Mobile</text>
                 <text class="arch-sub" x="34" y="74">Clerk JWT · learner</text>
-                <rect class="arch-box" x="240" y="34" width="200" height="52"/>
+                <rect class="arch-box arch-node" x="240" y="34" width="200" height="52"/>
                 <text class="arch-label" x="254" y="56">Next.js CMS</text>
                 <text class="arch-sub" x="254" y="74">API key + HMAC</text>
 
-                <line class="arch-line" x1="120" y1="86" x2="120" y2="118"/>
-                <line class="arch-line" x1="340" y1="86" x2="340" y2="118"/>
-                <line class="arch-line" x1="120" y1="118" x2="460" y2="118"/>
-                <line class="arch-line" x1="290" y1="118" x2="290" y2="136"/>
+                <line class="arch-line arch-flow" x1="120" y1="86" x2="120" y2="118"/>
+                <line class="arch-line arch-flow" x1="340" y1="86" x2="340" y2="118"/>
+                <line class="arch-line arch-flow" x1="120" y1="118" x2="460" y2="118"/>
+                <line class="arch-line arch-flow" x1="290" y1="118" x2="290" y2="136"/>
 
                 <text class="arch-band-label" x="20" y="154">NestJS API · port 3001</text>
-                <rect class="arch-box-accent" x="20" y="166" width="880" height="58"/>
+                <rect class="arch-box-accent arch-node" x="20" y="166" width="880" height="58"/>
                 <text class="arch-label" x="34" y="188">/users/me/* · 22</text>
                 <text class="arch-label" x="230" y="188">/cms/v1/* · 28</text>
                 <text class="arch-label" x="430" y="188">/webhooks/*</text>
@@ -289,22 +294,26 @@
                 <text class="arch-sub" x="430" y="208">Stripe + Clerk</text>
                 <text class="arch-sub" x="620" y="208">catalog + probes</text>
 
-                <line class="arch-line" x1="200" y1="224" x2="200" y2="250"/>
-                <line class="arch-line" x1="460" y1="224" x2="460" y2="250"/>
-                <line class="arch-line" x1="720" y1="224" x2="720" y2="250"/>
+                <line class="arch-line arch-flow" x1="200" y1="224" x2="200" y2="250"/>
+                <line class="arch-line arch-flow" x1="460" y1="224" x2="460" y2="250"/>
+                <line class="arch-line arch-flow" x1="720" y1="224" x2="720" y2="250"/>
 
                 <text class="arch-band-label" x="20" y="268">Data</text>
                 <text class="arch-band-label" x="480" y="268">External</text>
-                <rect class="arch-box" x="20" y="280" width="200" height="46"/>
+                <rect class="arch-box arch-node" x="20" y="280" width="200" height="46"/>
                 <text class="arch-label" x="34" y="308">PostgreSQL</text>
-                <rect class="arch-box" x="240" y="280" width="200" height="46"/>
+                <rect class="arch-box arch-node" x="240" y="280" width="200" height="46"/>
                 <text class="arch-label" x="254" y="308">Redis</text>
-                <rect class="arch-box" x="480" y="280" width="130" height="46"/>
+                <rect class="arch-box arch-node" x="480" y="280" width="130" height="46"/>
                 <text class="arch-label" x="494" y="308">Clerk</text>
-                <rect class="arch-box" x="630" y="280" width="130" height="46"/>
+                <rect class="arch-box arch-node" x="630" y="280" width="130" height="46"/>
                 <text class="arch-label" x="644" y="308">Stripe</text>
-                <rect class="arch-box" x="780" y="280" width="120" height="46"/>
+                <rect class="arch-box arch-node" x="780" y="280" width="120" height="46"/>
                 <text class="arch-label" x="794" y="308">S3</text>
+
+                <circle class="arch-pulse" r="4" aria-hidden="true">
+                  <animateMotion dur="4s" repeatCount="indefinite" path="M120 70 L120 118 L460 118 L460 196 L200 196 L200 280"/>
+                </circle>
               </svg>
               </div>
             </figure>
@@ -390,165 +399,7 @@
             </p>
           </div>
 
-          <div class="case-block">
-            <h3>Database schema</h3>
-            <p>
-              Learner and curriculum runtime use Sequelize with hand-written SQL
-              migrations. CMS editorial auth uses Prisma on the same PostgreSQL
-              instance — separate trackers
-              (<code>schema_migrations</code> vs <code>_prisma_migrations</code>).
-            </p>
-            <figure class="figure">
-              <figcaption class="figure-caption">Fig. 2 — API-owned tables. Scroll horizontally on small screens.</figcaption>
-              <div class="erd-scroll">
-                <svg class="erd-svg" viewBox="0 0 980 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Entity relationship diagram of API-owned PostgreSQL tables">
-                  <text class="erd-group-label" x="20" y="22">Curriculum</text>
-                  <text class="erd-group-label" x="340" y="22">Gamification</text>
-                  <text class="erd-group-label" x="580" y="22">Billing</text>
-                  <text class="erd-group-label" x="780" y="22">CMS &amp; audit</text>
-
-                  <rect class="erd-entity-title" x="20" y="32" width="110" height="28"/>
-                  <text class="erd-text-title" x="30" y="51" font-size="12">courses</text>
-                  <rect class="erd-entity" x="20" y="60" width="110" height="52"/>
-                  <text class="erd-text" x="30" y="80" font-size="10">id · title · status</text>
-                  <text class="erd-text-muted" x="30" y="96" font-size="9">published catalog</text>
-
-                  <rect class="erd-entity-title" x="20" y="140" width="110" height="28"/>
-                  <text class="erd-text-title" x="30" y="159" font-size="12">modules</text>
-                  <rect class="erd-entity" x="20" y="168" width="110" height="52"/>
-                  <text class="erd-text" x="30" y="188" font-size="10">course_id FK</text>
-                  <text class="erd-text-muted" x="30" y="204" font-size="9">draft · published</text>
-
-                  <rect class="erd-entity-title" x="20" y="248" width="110" height="28"/>
-                  <text class="erd-text-title" x="30" y="267" font-size="12">lessons</text>
-                  <rect class="erd-entity" x="20" y="276" width="110" height="44"/>
-                  <text class="erd-text" x="30" y="296" font-size="10">module_id FK</text>
-
-                  <rect class="erd-entity-title" x="20" y="348" width="110" height="28"/>
-                  <text class="erd-text-title" x="30" y="367" font-size="12">quizzes</text>
-                  <rect class="erd-entity" x="20" y="376" width="110" height="44"/>
-                  <text class="erd-text" x="30" y="396" font-size="10">module_id FK</text>
-
-                  <rect class="erd-entity-title" x="150" y="248" width="110" height="28"/>
-                  <text class="erd-text-title" x="160" y="267" font-size="12">tasks</text>
-                  <rect class="erd-entity" x="150" y="276" width="110" height="52"/>
-                  <text class="erd-text" x="160" y="296" font-size="10">lesson_id · quiz_id</text>
-                  <text class="erd-text-muted" x="160" y="312" font-size="9">8 task types · Zod</text>
-
-                  <rect class="erd-entity-title" x="150" y="356" width="110" height="28"/>
-                  <text class="erd-text-title" x="160" y="375" font-size="12">task_options</text>
-                  <rect class="erd-entity" x="150" y="384" width="110" height="44"/>
-                  <text class="erd-text" x="160" y="404" font-size="10">task_id FK</text>
-
-                  <rect class="erd-entity-title" x="150" y="452" width="110" height="28"/>
-                  <text class="erd-text-title" x="160" y="471" font-size="12">task_aliases</text>
-                  <rect class="erd-entity" x="150" y="480" width="110" height="24"/>
-                  <text class="erd-text" x="160" y="496" font-size="9">task_id FK</text>
-
-                  <rect class="erd-entity-title" x="340" y="32" width="130" height="28"/>
-                  <text class="erd-text-title" x="350" y="51" font-size="12">user_progress</text>
-                  <rect class="erd-entity" x="340" y="60" width="130" height="52"/>
-                  <text class="erd-text" x="350" y="80" font-size="10">hearts · XP · streak</text>
-                  <text class="erd-text-muted" x="350" y="96" font-size="9">active course pointer</text>
-
-                  <rect class="erd-entity-title" x="340" y="140" width="130" height="28"/>
-                  <text class="erd-text-title" x="350" y="159" font-size="12">task_progress</text>
-                  <rect class="erd-entity" x="340" y="168" width="130" height="52"/>
-                  <text class="erd-text" x="350" y="188" font-size="10">user_id · task_id</text>
-                  <text class="erd-note" x="350" y="204" font-size="9">UNIQUE (user_id, task_id)</text>
-
-                  <rect class="erd-entity-title" x="340" y="248" width="130" height="28"/>
-                  <text class="erd-text-title" x="350" y="267" font-size="12">user_quests</text>
-                  <rect class="erd-entity" x="340" y="276" width="130" height="44"/>
-                  <text class="erd-text" x="350" y="296" font-size="10">milestone tracking</text>
-
-                  <rect class="erd-entity-title" x="580" y="32" width="150" height="28"/>
-                  <text class="erd-text-title" x="590" y="51" font-size="12">user_subscriptions</text>
-                  <rect class="erd-entity" x="580" y="60" width="150" height="52"/>
-                  <text class="erd-text" x="590" y="80" font-size="10">Stripe mirror · Pro</text>
-                  <text class="erd-text-muted" x="590" y="96" font-size="9">cached 5m TTL</text>
-
-                  <rect class="erd-entity-title" x="580" y="140" width="150" height="28"/>
-                  <text class="erd-text-title" x="590" y="159" font-size="12">stripe_webhook_events</text>
-                  <rect class="erd-entity" x="580" y="168" width="150" height="52"/>
-                  <text class="erd-text" x="590" y="188" font-size="10">event.id PK</text>
-                  <text class="erd-note" x="590" y="204" font-size="9">idempotency · dedup</text>
-
-                  <rect class="erd-entity-title" x="780" y="32" width="150" height="28"/>
-                  <text class="erd-text-title" x="790" y="51" font-size="12">cms_users</text>
-                  <rect class="erd-entity" x="780" y="60" width="150" height="44"/>
-                  <text class="erd-text" x="790" y="80" font-size="10">Clerk sync · actor id</text>
-
-                  <rect class="erd-entity-title" x="780" y="130" width="150" height="28"/>
-                  <text class="erd-text-title" x="790" y="149" font-size="12">content_audit_logs</text>
-                  <rect class="erd-entity" x="780" y="158" width="150" height="44"/>
-                  <text class="erd-text" x="790" y="178" font-size="10">every CMS write logged</text>
-
-                  <rect class="erd-entity-title" x="780" y="228" width="150" height="28"/>
-                  <text class="erd-text-title" x="790" y="247" font-size="12">media_assets</text>
-                  <rect class="erd-entity" x="780" y="256" width="150" height="44"/>
-                  <text class="erd-text" x="790" y="276" font-size="10">S3 presigned uploads</text>
-
-                  <rect class="erd-entity-title" x="780" y="326" width="150" height="28"/>
-                  <text class="erd-text-title" x="790" y="345" font-size="12">schema_migrations</text>
-                  <rect class="erd-entity" x="780" y="354" width="150" height="52"/>
-                  <text class="erd-text" x="790" y="374" font-size="10">content hash tracking</text>
-                  <text class="erd-text-muted" x="790" y="390" font-size="9">advisory lock · CI safe</text>
-
-                  <path class="erd-line" d="M75 112 L75 140"/>
-                  <path class="erd-line" d="M75 220 L75 248"/>
-                  <path class="erd-line" d="M130 270 L150 300"/>
-                  <path class="erd-line" d="M205 328 L205 356"/>
-                  <path class="erd-line" d="M205 428 L205 452"/>
-                  <path class="erd-line" d="M260 300 L340 190" stroke-dasharray="4 3"/>
-                  <path class="erd-line" d="M470 86 L580 86" stroke-dasharray="4 3"/>
-                  <path class="erd-line" d="M730 112 L780 82" stroke-dasharray="4 3"/>
-
-                  <text class="erd-text-muted" x="20" y="516" font-size="10">Sequelize owns these tables. Prisma owns CMS auth. Dashed lines are logical FKs or sync paths.</text>
-                </svg>
-              </div>
-            </figure>
-          </div>
-
-          <div class="case-block">
-            <h3>Curriculum domain</h3>
-            <figure class="figure">
-              <figcaption class="figure-caption">Fig. 3 — Domain tree</figcaption>
-              <div class="domain-tree" role="img" aria-label="Course contains Modules, which contain Lessons and optional Quizzes, each containing ordered Tasks">
-                <ul>
-                  <li>
-                    Course
-                    <ul>
-                      <li>
-                        Module <span class="tree-state">draft / published</span>
-                        <ul>
-                          <li>
-                            Lesson
-                            <ul>
-                              <li>Task (ordered)</li>
-                              <li>Task (ordered)</li>
-                            </ul>
-                          </li>
-                          <li>
-                            Quiz (optional)
-                            <ul>
-                              <li>Task (ordered)</li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <p class="figure-note">
-                Publish is a transactional status change on the full module tree.
-                Eight task types, each with a distinct Zod payload.
-              </p>
-            </figure>
-          </div>
-
-          <div class="case-block">
+          <div class="case-block reveal" data-reveal>
             <h3>Backend scope</h3>
             <ul class="plain-list">
               <li>Curriculum CRUD and publish — Course → Module → Lesson/Quiz → Task</li>
@@ -562,22 +413,60 @@
             </ul>
           </div>
 
-          <div class="case-block">
+          <div class="case-block reveal" data-reveal>
             <h3>Write path</h3>
             <p>
               Progress updates, CMS publish, and Stripe webhooks follow the same
               pipeline. Multi-step writes run inside <code>sequelize.transaction()</code>.
             </p>
-            <ol class="methods">
-              <li><span class="step">01</span><span>Auth — JWT, API key, or webhook signature</span></li>
-              <li><span class="step">02</span><span>Zod validation against shared schemas</span></li>
-              <li><span class="step">03</span><span>Resource scoping — active course check</span></li>
-              <li><span class="step">04</span><span><code>sequelize.transaction()</code></span></li>
-              <li><span class="step">05</span><span>Cache invalidation — prefix delete on write</span></li>
-            </ol>
+            <figure class="figure">
+              <figcaption class="figure-caption">Fig. 2 — Write pipeline. Scroll horizontally on small screens.</figcaption>
+              <div class="figure-scroll">
+                <svg class="arch-svg pipeline-svg" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Write path: auth, Zod validation, resource scoping, transaction, cache invalidation">
+                  <text class="arch-band-label" x="20" y="22">Every mutating request</text>
+
+                  <rect class="arch-box arch-node" x="20" y="40" width="130" height="52"/>
+                  <text class="arch-label" x="34" y="62">Auth</text>
+                  <text class="arch-sub" x="34" y="78">JWT · key · sig</text>
+
+                  <line class="arch-line arch-flow" x1="150" y1="66" x2="175" y2="66"/>
+                  <polygon class="arch-arrow" points="175,66 168,62 168,70"/>
+
+                  <rect class="arch-box arch-node" x="180" y="40" width="130" height="52"/>
+                  <text class="arch-label" x="194" y="62">Zod parse</text>
+                  <text class="arch-sub" x="194" y="78">shared schemas</text>
+
+                  <line class="arch-line arch-flow" x1="310" y1="66" x2="335" y2="66"/>
+                  <polygon class="arch-arrow" points="335,66 328,62 328,70"/>
+
+                  <rect class="arch-box arch-node" x="340" y="40" width="150" height="52"/>
+                  <text class="arch-label" x="354" y="62">Scope check</text>
+                  <text class="arch-sub" x="354" y="78">active course</text>
+
+                  <line class="arch-line arch-flow" x1="490" y1="66" x2="515" y2="66"/>
+                  <polygon class="arch-arrow" points="515,66 508,62 508,70"/>
+
+                  <rect class="arch-box-accent arch-node" x="520" y="40" width="170" height="52"/>
+                  <text class="arch-label" x="534" y="62">Transaction</text>
+                  <text class="arch-sub" x="534" y="78">atomic commit</text>
+
+                  <line class="arch-line arch-flow" x1="690" y1="66" x2="715" y2="66"/>
+                  <polygon class="arch-arrow" points="715,66 708,62 708,70"/>
+
+                  <rect class="arch-box arch-node" x="720" y="40" width="160" height="52"/>
+                  <text class="arch-label" x="734" y="62">Cache purge</text>
+                  <text class="arch-sub" x="734" y="78">prefix delete</text>
+
+                  <rect class="arch-bracket" x="505" y="108" width="190" height="72" rx="4"/>
+                  <text class="arch-sub" x="520" y="128">commits together:</text>
+                  <text class="arch-label" x="520" y="148" font-size="11">progress · publish · billing</text>
+                  <text class="arch-label" x="520" y="166" font-size="11">audit log · idempotency</text>
+                </svg>
+              </div>
+            </figure>
           </div>
 
-          <div class="case-block">
+          <div class="case-block reveal" data-reveal>
             <h3>Performance &amp; caching</h3>
             <blockquote class="pullquote">
               Mobile cold load dropped from four or five API calls to about two
@@ -587,6 +476,55 @@
               Canonical task payloads are cached. Option shuffle happens after
               the cache hit — shuffled order is never stored in Redis.
             </p>
+            <figure class="figure">
+              <figcaption class="figure-caption">Fig. 3 — Read path and cache-aside. Scroll horizontally on small screens.</figcaption>
+              <div class="figure-scroll">
+                <svg class="arch-svg cache-svg" viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cache-aside read path: mobile to API to Redis, miss falls through to PostgreSQL, writes invalidate by prefix">
+                  <text class="arch-band-label" x="20" y="22">Read path</text>
+
+                  <rect class="arch-box arch-node" x="20" y="40" width="120" height="46"/>
+                  <text class="arch-label" x="34" y="68">Expo mobile</text>
+
+                  <line class="arch-line arch-flow" x1="140" y1="63" x2="175" y2="63"/>
+                  <text class="arch-edge-label" x="142" y="55">request</text>
+
+                  <rect class="arch-box-accent arch-node" x="180" y="40" width="130" height="46"/>
+                  <text class="arch-label" x="194" y="68">NestJS API</text>
+
+                  <line class="arch-line arch-flow" x1="310" y1="63" x2="345" y2="63"/>
+                  <text class="arch-edge-label" x="312" y="55">1. GET key</text>
+
+                  <rect class="arch-box arch-node" x="350" y="40" width="110" height="46"/>
+                  <text class="arch-label" x="364" y="68">Redis</text>
+
+                  <path class="arch-line arch-flow" d="M405 86 L405 120 L245 120 L245 86" stroke-dasharray="4 3"/>
+                  <text class="arch-edge-label" x="280" y="115">2a. hit → response</text>
+
+                  <line class="arch-line arch-flow" x1="460" y1="63" x2="495" y2="63" stroke-dasharray="4 3"/>
+                  <text class="arch-edge-label" x="462" y="55">2b. miss</text>
+
+                  <rect class="arch-box arch-node" x="500" y="40" width="130" height="46"/>
+                  <text class="arch-label" x="514" y="68">PostgreSQL</text>
+
+                  <path class="arch-line arch-flow" d="M565 86 L565 145 L405 145 L405 86" stroke-dasharray="4 3"/>
+                  <text class="arch-edge-label" x="430" y="140">3. hydrate + SETEX</text>
+
+                  <text class="arch-band-label" x="20" y="190">Write invalidation</text>
+
+                  <rect class="arch-box arch-node" x="20" y="208" width="200" height="46"/>
+                  <text class="arch-label" x="34" y="228">CMS publish</text>
+                  <text class="arch-sub" x="34" y="244">progress write</text>
+
+                  <line class="arch-line arch-flow" x1="220" y1="231" x2="345" y2="231"/>
+                  <text class="arch-edge-label" x="240" y="223">prefix DEL</text>
+
+                  <rect class="arch-box arch-node" x="350" y="208" width="110" height="46"/>
+                  <text class="arch-label" x="364" y="236">Redis</text>
+
+                  <text class="arch-sub" x="500" y="236">Shuffled options computed after cache hit — never stored.</text>
+                </svg>
+              </div>
+            </figure>
             <div class="data-table-wrap">
               <table class="data-table">
                 <thead>
@@ -632,7 +570,7 @@
             </div>
           </div>
 
-          <div class="case-block">
+          <div class="case-block reveal" data-reveal>
             <h3>Stripe webhook idempotency</h3>
             <p>Validated in Stripe test mode. No live production revenue claimed.</p>
             <ol class="methods">
@@ -646,11 +584,11 @@
               </li>
               <li>
                 <span class="step">03</span>
-                <span>Skip if <code>event.id</code> already exists in <code>stripe_webhook_events</code></span>
+                <span>Skip if <code>event.id</code> is already in the webhook event ledger</span>
               </li>
               <li>
                 <span class="step">04</span>
-                <span>Upsert <code>user_subscriptions</code> inside a transaction</span>
+                <span>Upsert the subscription mirror inside a transaction</span>
               </li>
               <li>
                 <span class="step">05</span>
@@ -659,31 +597,34 @@
             </ol>
           </div>
 
-          <div class="case-block">
+          <div class="case-block reveal" data-reveal>
             <h3>Testing</h3>
             <p>
               141 API unit tests, 32 validation-package tests, 22 lesson-logic
               tests, 9 API e2e tests with Supertest. About 204 backend-focused
-              tests in total, ~65% API statement coverage. CI runs
+              tests in total, ~65% API statement coverage.
+              <span class="verbose-only">Subscription and leaderboard services are thinner on unit tests — open gap.</span>
+              CI runs
               <code>pnpm build</code>, lint, and test on every PR; migration
               smoke on push to main.
+              <span class="verbose-only">E2E is not a CI gate yet — by design for now.</span>
             </p>
           </div>
 
-          <div class="case-block">
+          <div class="case-block reveal" data-reveal>
             <h3>Engineering decisions</h3>
             <dl class="decision-list">
               <div>
                 <dt>Modular monolith</dt>
-                <dd>Simpler transactions and deployment; clear module boundaries for later extraction.</dd>
+                <dd>I kept one deployable because cross-module transactions matter more than service boundaries at this team size. The module split is real — I'd extract later, not now.</dd>
               </div>
               <div>
                 <dt>Aggregated REST endpoint</dt>
-                <dd>Known mobile data shape; faster to ship and cache than GraphQL.</dd>
+                <dd>GraphQL would have been prettier on paper. Two clients, one backend engineer, known mobile shape — I shipped <code>/users/me/learn</code> and cached it instead.</dd>
               </div>
               <div>
                 <dt>Explicit cache-aside</dt>
-                <dd>Typed keys and invalidation sit beside writes — not hidden framework magic.</dd>
+                <dd>I write invalidation beside the write path on purpose. Hidden framework caching is how you get stale learn tabs and no idea why.</dd>
               </div>
             </dl>
           </div>
@@ -692,6 +633,71 @@
             Private pre-launch team product. Primary scope: backend and API
             integration. Stripe validated in test mode; no live production traffic claimed.
           </p>
+        </div>
+      </section>
+
+      <section id="broke" class="panel">
+        <div class="shell">
+          <h2 class="section-title reveal" data-reveal>What broke</h2>
+          <p class="case-meta reveal" data-reveal>Real bugs from Ghaya — not hypothetical war stories.</p>
+
+          <ol class="incident-list">
+            <li class="incident reveal" data-reveal style="--i: 0">
+              <span class="incident-num">01</span>
+              <div>
+                <h3>Stripe renewals updated nothing</h3>
+                <dl class="incident-detail">
+                  <div><dt>Symptom</dt><dd>Checkout worked; subscription renewals silently failed to update period end.</dd></div>
+                  <div><dt>Cause</dt><dd>The handler cast <code>event.data.object</code> once as a Checkout Session and reused that variable for <code>invoice.payment_succeeded</code>.</dd></div>
+                  <div><dt>Fix</dt><dd>Branched per event type, mapped fields from <code>Stripe.Invoice</code>, recorded the event id before processing so retries are no-ops.</dd></div>
+                </dl>
+              </div>
+            </li>
+            <li class="incident reveal" data-reveal style="--i: 1">
+              <span class="incident-num">02</span>
+              <div>
+                <h3>Learn tab over-fetching</h3>
+                <dl class="incident-detail">
+                  <div><dt>Symptom</dt><dd>Mobile cold load fired four or five parallel API calls before the trail UI could render.</dd></div>
+                  <div><dt>Cause</dt><dd>No aggregated endpoint — progress, modules, course progress, and lesson percentage each had their own route.</dd></div>
+                  <div><dt>Fix</dt><dd>Built <code>GET /users/me/learn</code>, added read indexes in migration <code>009</code>, cached the snapshot for 30s. Down to about two calls.</dd></div>
+                </dl>
+              </div>
+            </li>
+            <li class="incident reveal" data-reveal style="--i: 2">
+              <span class="incident-num">03</span>
+              <div>
+                <h3>Points farming via scope bypass</h3>
+                <dl class="incident-detail">
+                  <div><dt>Symptom</dt><dd>Any authenticated learner could post progress for any published task, not just their active course.</dd></div>
+                  <div><dt>Cause</dt><dd>Lesson, quiz, and task IDs were not verified against the user's active course before awarding points.</dd></div>
+                  <div><dt>Fix</dt><dd>Added active-course assertions on curriculum-read and gamification paths.</dd></div>
+                </dl>
+              </div>
+            </li>
+            <li class="incident reveal" data-reveal style="--i: 3">
+              <span class="incident-num">04</span>
+              <div>
+                <h3>Concurrent completions double-awarded points</h3>
+                <dl class="incident-detail">
+                  <div><dt>Symptom</dt><dd>Task completion updates points, streak, and quests — concurrent mobile requests could leave inconsistent state.</dd></div>
+                  <div><dt>Cause</dt><dd>Multi-step gamification writes were not atomic; duplicate progress rows were possible.</dd></div>
+                  <div><dt>Fix</dt><dd>Wrapped writes in transactions, deduped existing rows, added a uniqueness constraint on user + task.</dd></div>
+                </dl>
+              </div>
+            </li>
+          </ol>
+
+          <div class="gaps-block reveal" data-reveal>
+            <h3>Known gaps</h3>
+            <p class="gaps-intro">Things I would fix in v2 — toggling <code>--verbose</code> in the footer shows where these show up on the page.</p>
+            <ul class="plain-list gaps-list">
+              <li>CMS publish lacks pre-publish validation — incomplete modules can go live</li>
+              <li>API rate limiting not implemented</li>
+              <li>E2E not a CI gate yet</li>
+              <li>BullMQ background-job package documented but unwired</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -749,7 +755,10 @@
     <footer class="site-footer">
       <div class="shell footer-inner">
         <p>© <span id="year">2026</span> Salah Joja</p>
-        <a href="#top">Top</a>
+        <div class="footer-actions">
+          <button id="verbose-toggle" class="text-btn verbose-toggle" type="button" aria-pressed="false">--verbose</button>
+          <a href="#top">Top</a>
+        </div>
       </div>
     </footer>
   </body>
