@@ -593,13 +593,13 @@ h1 {
 }
 
 .arch-flow {
-  stroke-dasharray: 6 4;
-  animation: flow 1.4s linear infinite;
+  stroke-dasharray: 8 6;
+  animation: flow 2.4s linear infinite;
 }
 
 @keyframes flow {
   to {
-    stroke-dashoffset: -20;
+    stroke-dashoffset: -28;
   }
 }
 
