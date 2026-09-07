@@ -315,14 +315,23 @@ h1 {
 
 .def-list div {
   display: grid;
-  grid-template-columns: 9.5rem 1fr;
+  grid-template-columns: 12.5rem 1fr;
   gap: var(--space-md);
-  align-items: baseline;
+  align-items: center;
 }
 
 .def-list dt {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   font-weight: 500;
   color: var(--ink);
+}
+
+.def-list dt img {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 .def-list dd {
