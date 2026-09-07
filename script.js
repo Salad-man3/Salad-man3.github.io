@@ -178,13 +178,4 @@
       });
     }
   }
-
-  var verboseToggle = document.getElementById("verbose-toggle");
-
-  if (verboseToggle) {
-    verboseToggle.addEventListener("click", function () {
-      var enabled = document.documentElement.classList.toggle("verbose");
-      verboseToggle.setAttribute("aria-pressed", String(enabled));
-    });
-  }
 })();
