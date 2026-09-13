@@ -209,7 +209,11 @@ code {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 0.9rem;
+  /* The bar lives inside .page, which is padded, so its background would stop
+     at the gutter. Pull it out to the screen edges and re-add the padding
+     inside so the content stays aligned with the rest of the column. */
+  margin-inline: calc(-1 * var(--gutter));
+  padding: 0.9rem var(--gutter);
   border-bottom: 1px solid var(--rule);
   position: sticky;
   top: 0;
