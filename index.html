@@ -6,7 +6,7 @@
     <title>Salah Joja — Backend Engineer | Node.js, NestJS, PostgreSQL</title>
     <meta
       name="description"
-      content="Salah Joja — backend engineer in Damascus. Node.js, NestJS, PostgreSQL, Redis. A 54-endpoint API built from scratch, the bugs worth writing down, and what I'm learning next."
+      content="Salah Joja — backend engineer in Damascus. Node.js, NestJS, PostgreSQL, Redis. A 54-endpoint API built from scratch, its architecture, and the bugs worth writing down."
     />
     <link rel="canonical" href="https://salad-man3.github.io/" />
     <meta property="og:type" content="website" />
@@ -122,7 +122,6 @@
           <li><a href="#incidents" data-nav>Incidents</a></li>
           <li><a href="#architecture" data-nav>Architecture</a></li>
           <li><a href="#stack" data-nav>Stack</a></li>
-          <li><a href="#learning" data-nav>Learning now</a></li>
           <li><a href="#work" data-nav>Other work</a></li>
           <li><a href="#contact" data-nav>Contact</a></li>
         </ul>
@@ -556,58 +555,6 @@
           </div>
         </section>
 
-        <section class="section section-learn" id="learning">
-          <h2>Learning now</h2>
-          <p class="section-lede">
-            Every item here is an edge I actually hit on the job, not a tutorial
-            I haven't opened.
-          </p>
-
-          <div class="learn-grid">
-            <article class="learn-card">
-              <h3>Observability</h3>
-              <p>
-                On Ghaya Go I debugged from logs I'd written by hand. I want to
-                know a request is slow before someone tells me it is.
-              </p>
-              <span class="tools">Pino · request correlation IDs · Sentry</span>
-            </article>
-
-            <article class="learn-card">
-              <h3>Rate limiting</h3>
-              <p>
-                The API shipped without it. It was on my list and the launch date
-                came first — so it's the first thing I'm adding to my own
-                project.
-              </p>
-              <span class="tools">@nestjs/throttler</span>
-            </article>
-
-            <article class="learn-card">
-              <h3>End-to-end tests in CI</h3>
-              <p>
-                We had nine e2e tests that ran locally. Running them against a
-                real Postgres on every push is the version I want.
-              </p>
-              <span class="tools">Supertest · Dockerised Postgres</span>
-            </article>
-
-            <article class="learn-card">
-              <h3>Reading query plans</h3>
-              <p>
-                I added indexes in migration 009 because the endpoint felt slow.
-                I'd rather be able to prove it from the plan.
-              </p>
-              <span class="tools">EXPLAIN ANALYZE</span>
-            </article>
-          </div>
-
-          <p class="learn-note">
-            I'd rather tell you what I'm still learning than pretend the list is
-            empty. <span class="mark">Ask me about any of these in an
-            interview</span> and I'll tell you exactly how far I've got.
-          </p>
-        </section>
 
         <section class="section" id="work">
           <h2>Other work</h2>

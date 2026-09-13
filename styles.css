@@ -3,8 +3,8 @@
    produced sits in a console panel. Dark inverts the elevation rather than the
    colour — panels are recessed into the page instead of raised above it — so
    evidence stays visually distinct from assertion in both.
-   Colour means something: blue is structure, coral is what he's still learning,
-   green is a thing that works. Labels are sans, machine values are mono. */
+   Colour means something: blue is structure, green is a thing that works,
+   coral is a warning. Labels are sans, machine values are mono. */
 
 /* Dark — the default. Blue-slate rather than black, and three semantic
    accents rather than one neon, so it reads as a palette not a preset. */
@@ -685,7 +685,6 @@ h1 {
   flex: none;
 }
 
-.section-learn > h2::before { background: var(--coral); }
 .section-incidents > h2::before { background: var(--ink); }
 
 .section-lede {
@@ -959,52 +958,6 @@ table.stack-table {
   color: var(--ink-2);
 }
 
-/* ------------------------------------------------------------- learning -- */
-
-.learn-grid {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.75rem;
-}
-
-.learn-card {
-  padding: 1.25rem;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-top: 3px solid var(--coral);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.learn-card h3 {
-  margin: 0 0 0.3rem;
-  font-size: 1.0625rem;
-  font-weight: 600;
-}
-
-.learn-card p {
-  margin: 0;
-  font-size: 0.9375rem;
-  color: var(--ink-2);
-}
-
-.learn-card .tools {
-  display: block;
-  margin-top: 0.6rem;
-  font-family: var(--mono);
-  font-size: 0.8125rem;
-  color: var(--coral-ink);
-}
-
-.learn-note {
-  max-width: var(--measure);
-  margin: 1.75rem 0 0;
-  padding: 1rem 1.25rem;
-  background: var(--coral-soft);
-  border-radius: var(--radius);
-  font-size: 0.9375rem;
-}
-
 /* ----------------------------------------------------------------- work -- */
 
 .work-grid {
@@ -1134,7 +1087,6 @@ table.stack-table {
 /* ------------------------------------------------------------ wide view -- */
 
 @media (min-width: 46rem) {
-  .learn-grid,
   .work-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1274,7 +1226,6 @@ table.stack-table {
 
   .role,
   .work-item,
-  .learn-card,
   .contact-card,
   .figure {
     box-shadow: none;
