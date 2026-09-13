@@ -1,456 +1,700 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Salah Joja — Backend Engineer | Node.js, NestJS, PostgreSQL</title>
     <meta
       name="description"
-      content="Salah Joja — Backend engineer. NestJS, PostgreSQL, Redis, TypeScript. Education platform case study and technical portfolio."
+      content="Salah Joja — backend engineer in Damascus. Node.js, NestJS, PostgreSQL, Redis. A 54-endpoint API built from scratch, the bugs worth writing down, and what I'm learning next."
     />
-    <meta name="author" content="Salah Joja" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#12110e" />
     <link rel="canonical" href="https://salad-man3.github.io/" />
-    <meta property="og:type" content="profile" />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://salad-man3.github.io/" />
     <meta property="og:title" content="Salah Joja — Backend Engineer" />
     <meta
       property="og:description"
-      content="Backend systems, architecture, and selected work."
+      content="Node.js and NestJS. I build APIs, data models, and the rules that decide who is allowed to do what."
     />
-    <title>Salah Joja — Backend Engineer | NestJS & PostgreSQL</title>
+    <meta name="theme-color" content="#0f1319" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232b45d4'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='600' fill='%23ffffff' text-anchor='middle'%3Esj%3C/text%3E%3C/svg%3E"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2312110e'/%3E%3Ctext x='14' y='42' font-family='Georgia' font-size='24' fill='%23d4923a'%3ESJ%3C/text%3E%3C/svg%3E"
-    />
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Salah Joja",
         "jobTitle": "Backend Engineer",
-        "email": "mailto:salahjoja@gmail.com",
+        "email": "salahjoja1@gmail.com",
         "url": "https://salad-man3.github.io/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Damascus",
+          "addressCountry": "SY"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Damascus University"
+        },
         "sameAs": [
           "https://github.com/Salad-man3",
           "https://www.linkedin.com/in/salah-joja/"
         ],
         "knowsAbout": [
-          "NestJS",
           "Node.js",
+          "NestJS",
           "TypeScript",
-          "Laravel",
+          "REST API design",
           "PostgreSQL",
-          "MySQL",
-          "Sequelize",
-          "Eloquent ORM",
           "Redis",
-          "REST API design"
+          "Caching strategy",
+          "Database transactions",
+          "Idempotency",
+          "Webhooks",
+          "Authentication and authorization",
+          "JWT",
+          "Docker",
+          "CI/CD",
+          "Laravel",
+          "MySQL"
         ]
       }
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip" href="#main">Skip to content</a>
 
-    <header class="site-header">
-      <div class="shell header-inner">
-        <a class="wordmark" href="#top">Salah Joja</a>
-        <button
-          class="nav-toggle"
+    <div class="page">
+      <header class="topbar">
+        <a class="wordmark" href="#top">salah joja</a>
+        <div class="topbar-actions">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="index-nav"
+          >
+            Sections
+          </button>
+          <button
+          class="theme-toggle"
           type="button"
-          aria-expanded="false"
-          aria-controls="site-nav"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Switch to light theme"
         >
-          <span class="sr-only">Toggle navigation</span>
-          <span></span><span></span>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8.2 8.2 0 0 1 10.5 4a8.2 8.2 0 1 0 9.5 9.5z"/></svg>
+          <span class="theme-toggle-label">Theme</span>
         </button>
-        <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-          <a href="#work" data-nav>Work</a>
-          <a href="#stack" data-nav>Stack</a>
-          <a href="#case-study" data-nav>Case study</a>
-          <a href="#broke" data-nav>What broke</a>
-          <a href="#projects" data-nav>Projects</a>
-          <a href="#contact" data-nav>Contact</a>
-          <a href="cv/cv-nest.html" target="_blank" rel="noopener">CV</a>
-          <a class="nav-mail" href="mailto:salahjoja@gmail.com">Email</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="main">
-      <section id="top" class="panel hero-panel">
-        <div class="shell hero-sequence">
-          <p class="kicker reveal" data-reveal style="--i: 0">Backend engineer</p>
-          <h1 class="reveal" data-reveal style="--i: 1">Salah Joja</h1>
-          <p class="role-line reveal" data-reveal style="--i: 2">NestJS · Laravel · PostgreSQL · Redis · TypeScript · REST</p>
-          <p class="lede reveal" data-reveal style="--i: 3">
-            I build APIs where the interesting parts are the boundaries — who can
-            call what, what commits atomically, and what gets cached. I like
-            finding the bugs that only show up when two clients hit the same
-            endpoint at once.
-          </p>
-          <a class="cta reveal" data-reveal style="--i: 4" href="#case-study">Read the Ghaya case study</a>
         </div>
-      </section>
+      </header>
 
-      <section id="work" class="panel">
-        <div class="shell">
-          <header class="section-head">
-            <p class="section-kicker">Work</p>
-            <h2 class="section-title">Experience</h2>
-          </header>
-          <ol class="row-list">
-            <li class="row-item">
-              <span class="row-num">01</span>
-              <div>
-                <h3>Education & curriculum management platform</h3>
-                <p>
-                  NestJS API for a pre-launch Turborepo product: Expo mobile and
-                  Next.js CMS, shared Zod contracts, transactional publish, and
-                  Stripe test-mode billing.
-                </p>
-                <div class="row-links">
-                  <a href="#case-study">Case study</a>
-                  <a href="https://ghayaplatform.com" target="_blank" rel="noopener">ghayaplatform.com</a>
-                </div>
-              </div>
-              <p class="row-meta">Ghaya Go <br />Feb–Aug 2026 · Software Engineer</p>
-            </li>
-          </ol>
-        </div>
-      </section>
+      <nav class="index" id="index-nav" aria-label="Page sections">
+        <a class="wordmark wordmark-desk" href="#top">salah joja</a>
+        <p class="index-role">Backend engineer</p>
 
-      <section id="stack" class="panel">
-        <div class="shell">
-          <header class="section-head">
-            <p class="section-kicker">Stack</p>
-            <h2 class="section-title">Technologies</h2>
-          </header>
+        <button
+          class="theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-pressed="false"
+          aria-label="Switch to light theme"
+        >
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8.2 8.2 0 0 1 10.5 4a8.2 8.2 0 1 0 9.5 9.5z"/></svg>
+          <span class="theme-toggle-label">Theme</span>
+        </button>
 
-          <div class="stack-block">
-            <h3>Backend</h3>
-            <dl class="def-list">
-              <div>
-                <dt>
-                  <img src="assets/icons/nestjs.svg" alt="" width="22" height="22" />
-                  NestJS
-                </dt>
-                <dd>Modular APIs, 54+ routes, controller boundaries</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/nodejs.svg" alt="" width="22" height="22" />
-                  Node.js
-                </dt>
-                <dd>Runtime for the API and CI jobs</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/typescript.svg" alt="" width="22" height="22" />
-                  TypeScript
-                </dt>
-                <dd>Shared types across API, mobile, and CMS</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/laravel.svg" alt="" width="22" height="22" />
-                  Laravel
-                </dt>
-                <dd>REST APIs, Sanctum auth, earlier graduation work</dd>
-              </div>
-            </dl>
-          </div>
+        <ul class="index-list">
+          <li><a href="#experience" data-nav>Experience</a></li>
+          <li><a href="#incidents" data-nav>Incidents</a></li>
+          <li><a href="#architecture" data-nav>Architecture</a></li>
+          <li><a href="#stack" data-nav>Stack</a></li>
+          <li><a href="#learning" data-nav>Learning now</a></li>
+          <li><a href="#work" data-nav>Other work</a></li>
+          <li><a href="#contact" data-nav>Contact</a></li>
+        </ul>
 
-          <div class="stack-block">
-            <h3>Data</h3>
-            <dl class="def-list">
-              <div>
-                <dt>
-                  <img src="assets/icons/postgresql.svg" alt="" width="22" height="22" />
-                  PostgreSQL
-                </dt>
-                <dd>Source of truth, 10 versioned SQL migrations</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/redis.svg" alt="" width="22" height="22" />
-                  Redis
-                </dt>
-                <dd>Cache-aside with typed keys and prefix invalidation</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/sequelize.svg" alt="" width="22" height="22" />
-                  Sequelize
-                </dt>
-                <dd>Learner and curriculum runtime models</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/prisma.svg" alt="" width="22" height="22" />
-                  Prisma
-                </dt>
-                <dd>CMS editorial auth on the same Postgres instance</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/mysql.svg" alt="" width="22" height="22" />
-                  MySQL
-                </dt>
-                <dd>Laravel track and earlier APIs, with Eloquent ORM</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div class="stack-block">
-            <h3>Delivery</h3>
-            <dl class="def-list">
-              <div>
-                <dt>
-                  <img src="assets/icons/jest.svg" alt="" width="22" height="22" />
-                  Jest
-                </dt>
-                <dd>~204 automated tests with Supertest, ~65% API coverage</dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/swagger.svg" alt="" width="22" height="22" />
-                  OpenAPI
-                </dt>
-                <dd>Swagger at <code>/docs</code></dd>
-              </div>
-              <div>
-                <dt>
-                  <img src="assets/icons/docker.svg" alt="" width="22" height="22" />
-                  Docker
-                </dt>
-                <dd>GHCR images, migration smoke, health probes · Also Zod · Clerk · Stripe · Turborepo · pnpm</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section id="case-study" class="panel">
-        <div class="shell">
-          <header class="section-head">
-            <p class="section-kicker">Case study</p>
-            <h2 class="section-title">Ghaya Go</h2>
-            <p class="section-lead">Software Engineer · Feb–Aug 2026 · Pre-launch · Modular monolith</p>
-          </header>
-
-          <div class="case-block">
-            <h3>System context</h3>
-            <p>
-              One NestJS API serves two clients. The CMS never writes curriculum
-              tables directly—it calls signed <code>/cms/v1/*</code> endpoints.
-              Mobile consumes Clerk-authenticated <code>/users/me/*</code> routes.
-              Business rules live in the API; clients share Zod schemas and types.
-              The surface is 54+ HTTP routes across six controllers: 22 learner,
-              28 CMS write, plus public catalog, webhooks, and health.
-            </p>
-            <figure class="figure reveal" data-reveal>
-              <figcaption class="figure-caption">Fig. 1 — System architecture</figcaption>
-              <div class="figure-scroll">
-              <svg class="arch-svg arch-diagram" viewBox="0 0 920 340" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture: Expo mobile and Next.js CMS connect to NestJS API, which connects to PostgreSQL, Redis, Clerk, Stripe, and S3">
-                <defs>
-                  <path id="arch-pulse-path" d="M120 86 L120 118 L230 118 L230 166 L230 224 L120 224 L120 280"/>
-                </defs>
-                <text class="arch-band-label" x="20" y="22">Clients</text>
-                <rect class="arch-box arch-node" x="20" y="34" width="200" height="52"/>
-                <text class="arch-label" x="34" y="56">Expo Mobile</text>
-                <text class="arch-sub" x="34" y="74">Clerk JWT · learner</text>
-                <rect class="arch-box arch-node" x="240" y="34" width="200" height="52"/>
-                <text class="arch-label" x="254" y="56">Next.js CMS</text>
-                <text class="arch-sub" x="254" y="74">API key + HMAC</text>
-
-                <line class="arch-line" x1="120" y1="86" x2="120" y2="118"/>
-                <line class="arch-line" x1="340" y1="86" x2="340" y2="118"/>
-                <line class="arch-line arch-flow" x1="120" y1="118" x2="340" y2="118"/>
-                <line class="arch-line arch-flow" x1="230" y1="118" x2="230" y2="166"/>
-
-                <text class="arch-band-label" x="20" y="154">NestJS API · port 3001</text>
-                <rect class="arch-box-accent arch-node" x="20" y="166" width="880" height="58"/>
-                <text class="arch-label" x="34" y="188">/users/me/* · 22</text>
-                <text class="arch-label" x="230" y="188">/cms/v1/* · 28</text>
-                <text class="arch-label" x="430" y="188">/webhooks/*</text>
-                <text class="arch-label" x="620" y="188">/courses · /health/*</text>
-                <text class="arch-sub" x="34" y="208">learner JWT</text>
-                <text class="arch-sub" x="230" y="208">CMS write</text>
-                <text class="arch-sub" x="430" y="208">Stripe + Clerk</text>
-                <text class="arch-sub" x="620" y="208">catalog + probes</text>
-
-                <line class="arch-line arch-flow" x1="120" y1="224" x2="120" y2="280"/>
-                <line class="arch-line arch-flow" x1="340" y1="224" x2="340" y2="280"/>
-                <line class="arch-line arch-flow" x1="545" y1="224" x2="545" y2="280"/>
-                <line class="arch-line arch-flow" x1="695" y1="224" x2="695" y2="280"/>
-                <line class="arch-line arch-flow" x1="840" y1="224" x2="840" y2="280"/>
-
-                <text class="arch-band-label" x="20" y="268">Data</text>
-                <text class="arch-band-label" x="480" y="268">External</text>
-                <rect class="arch-box arch-node" x="20" y="280" width="200" height="46"/>
-                <text class="arch-label" x="34" y="308">PostgreSQL</text>
-                <rect class="arch-box arch-node" x="240" y="280" width="200" height="46"/>
-                <text class="arch-label" x="254" y="308">Redis</text>
-                <rect class="arch-box arch-node" x="480" y="280" width="130" height="46"/>
-                <text class="arch-label" x="494" y="308">Clerk</text>
-                <rect class="arch-box arch-node" x="630" y="280" width="130" height="46"/>
-                <text class="arch-label" x="644" y="308">Stripe</text>
-                <rect class="arch-box arch-node" x="780" y="280" width="120" height="46"/>
-                <text class="arch-label" x="794" y="308">S3</text>
-
-                <circle class="arch-pulse" r="4" aria-hidden="true">
-                  <animateMotion dur="5s" repeatCount="indefinite">
-                    <mpath href="#arch-pulse-path"/>
-                  </animateMotion>
-                </circle>
-              </svg>
-              </div>
-            </figure>
-          </div>
-
-          <div class="case-block reveal" data-reveal>
-            <h3>Engineering decisions</h3>
-            <dl class="decision-list">
-              <div>
-                <dt>Modular monolith</dt>
-                <dd>I kept one deployable because cross-module transactions matter more than service boundaries at this team size. The module split is real — I'd extract later, not now.</dd>
-              </div>
-              <div>
-                <dt>Aggregated REST endpoint</dt>
-                <dd>GraphQL would have been prettier on paper. Two clients, one backend engineer, known mobile shape — I shipped <code>/users/me/learn</code> and cached it instead.</dd>
-              </div>
-              <div>
-                <dt>Explicit cache-aside</dt>
-                <dd>I write invalidation beside the write path on purpose. Hidden framework caching is how you get stale learn tabs and no idea why.</dd>
-              </div>
-            </dl>
-          </div>
-
-          <p class="scope-note">
-            Private pre-launch team product. Primary scope: backend and API
-            integration. Stripe validated in test mode; no live production traffic claimed.
-          </p>
-        </div>
-      </section>
-
-      <section id="broke" class="panel">
-        <div class="shell">
-          <header class="section-head reveal" data-reveal>
-            <p class="section-kicker">Debug log</p>
-            <h2 class="section-title">What broke</h2>
-            <p class="section-lead">Real bugs from Ghaya — not hypothetical war stories.</p>
-          </header>
-
-          <ol class="incident-list">
-            <li class="incident reveal" data-reveal style="--i: 0">
-              <span class="incident-num">01</span>
-              <div>
-                <h3>Stripe renewals updated nothing</h3>
-                <dl class="incident-detail">
-                  <div><dt>Symptom</dt><dd>Checkout worked; subscription renewals silently failed to update period end.</dd></div>
-                  <div><dt>Cause</dt><dd>The handler cast <code>event.data.object</code> once as a Checkout Session and reused that variable for <code>invoice.payment_succeeded</code>.</dd></div>
-                  <div><dt>Fix</dt><dd>Branched per event type, mapped fields from <code>Stripe.Invoice</code>, recorded the event id before processing so retries are no-ops.</dd></div>
-                </dl>
-              </div>
-            </li>
-            <li class="incident reveal" data-reveal style="--i: 1">
-              <span class="incident-num">02</span>
-              <div>
-                <h3>Learn tab over-fetching</h3>
-                <dl class="incident-detail">
-                  <div><dt>Symptom</dt><dd>Mobile cold load fired four or five parallel API calls before the trail UI could render.</dd></div>
-                  <div><dt>Cause</dt><dd>No aggregated endpoint — progress, modules, course progress, and lesson percentage each had their own route.</dd></div>
-                  <div><dt>Fix</dt><dd>Built <code>GET /users/me/learn</code>, added read indexes in migration <code>009</code>, cached the snapshot for 30s. Down to about two calls.</dd></div>
-                </dl>
-              </div>
-            </li>
-            <li class="incident reveal" data-reveal style="--i: 2">
-              <span class="incident-num">03</span>
-              <div>
-                <h3>Points farming via scope bypass</h3>
-                <dl class="incident-detail">
-                  <div><dt>Symptom</dt><dd>Any authenticated learner could post progress for any published task, not just their active course.</dd></div>
-                  <div><dt>Cause</dt><dd>Lesson, quiz, and task IDs were not verified against the user's active course before awarding points.</dd></div>
-                  <div><dt>Fix</dt><dd>Added active-course assertions on curriculum-read and gamification paths.</dd></div>
-                </dl>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section id="projects" class="panel">
-        <div class="shell">
-          <header class="section-head">
-            <p class="section-kicker">Projects</p>
-            <h2 class="section-title">Other work</h2>
-          </header>
-          <ol class="row-list">
-            <li class="row-item">
-              <span class="row-num">01</span>
-              <div>
-                <h3>Ribat</h3>
-                <p>Education platform — details coming soon.</p>
-              </div>
-              <p class="row-meta">In progress</p>
-            </li>
-            <li class="row-item">
-              <span class="row-num">02</span>
-              <div>
-                <h3>T-_Project</h3>
-                <p>Laravel REST API — Sanctum auth, CRUD, validation, soft deletes, Postman docs.</p>
-                <div class="row-links">
-                  <a href="https://github.com/Salad-man3/T-_Project" target="_blank" rel="noopener">GitHub</a>
-                  <a href="https://documenter.getpostman.com/view/36834914/2sAXxLBZom" target="_blank" rel="noopener">API docs</a>
-                </div>
-              </div>
-              <p class="row-meta">Public · graduation</p>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      <section id="contact" class="panel">
-        <div class="shell">
-          <header class="section-head">
-            <p class="section-kicker">Contact</p>
-            <h2 class="section-title">Get in touch</h2>
-          </header>
-          <p class="contact-lead">
-            Backend engineering roles, collaborations, or technical discussions.
-          </p>
-          <p class="contact-email">
-            <a href="mailto:salahjoja@gmail.com">salahjoja@gmail.com</a>
-          </p>
-          <button id="copy-email" class="text-btn" type="button" data-email="salahjoja@gmail.com">Copy email</button>
-          <p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
-          <div class="contact-links">
+        <ul class="index-list index-out">
+          <li><a href="cv/salah-joja-backend-engineer.pdf" target="_blank" rel="noopener">CV</a></li>
+          <li>
             <a href="https://github.com/Salad-man3" target="_blank" rel="noopener">GitHub</a>
+          </li>
+          <li>
             <a href="https://www.linkedin.com/in/salah-joja/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="cv/cv-nest.html" target="_blank" rel="noopener">CV</a>
-          </div>
-          <p class="education-line">
-            Damascus University — B.S. Information Technology Engineering · Expected 2028
-          </p>
-        </div>
-      </section>
-    </main>
+          </li>
+        </ul>
+      </nav>
 
-    <footer class="site-footer">
-      <div class="shell footer-inner">
-        <p>© <span id="year">2026</span> Salah Joja</p>
-        <a href="#top">Top</a>
-      </div>
-    </footer>
+      <main class="content" id="main">
+        <section class="hero" id="top">
+          <p class="now">
+            <span class="pulse" aria-hidden="true"></span>
+            Open to work — Damascus or fully remote
+          </p>
+
+          <h1>Salah Joja</h1>
+
+          <p class="lede">
+            I build the backend of web and mobile products — the API, the data
+            model, and the rules that decide who is allowed to do what. My last
+            one went <span class="mark">from an empty repository to 54
+            endpoints</span> serving a mobile app and a CMS, backed by 204
+            automated tests.
+          </p>
+
+          <dl class="facts">
+            <div>
+              <dt>Based in</dt>
+              <dd>Damascus, Syria <span class="dim">UTC+3</span></dd>
+            </div>
+            <div>
+              <dt>Available for</dt>
+              <dd>On-site here, or fully remote worldwide</dd>
+            </div>
+            <div>
+              <dt>Working in</dt>
+              <dd>Node.js, NestJS, TypeScript, PostgreSQL, Redis</dd>
+            </div>
+          </dl>
+
+          <figure class="console console-hero">
+            <figcaption>
+              <span class="method">GET</span>
+              <span class="route">/users/me/learn</span>
+              <span class="status status-ok">200</span>
+            </figcaption>
+            <div class="console-body">
+              <p class="console-note">
+                The mobile app opened by firing every learner query in parallel.
+                One aggregated endpoint, a 30-second Redis snapshot, and two read
+                indexes later:
+              </p>
+              <table class="calls">
+                <tbody>
+                  <tr>
+                    <th scope="row">Before</th>
+                    <td><span class="bar bar-before" aria-hidden="true"></span></td>
+                    <td class="calls-n">5 requests</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">After</th>
+                    <td><span class="bar bar-after" aria-hidden="true"></span></td>
+                    <td class="calls-n">2 requests</td>
+                  </tr>
+                </tbody>
+              </table>
+              <dl class="console-meta">
+                <div><dt>Cache</dt><dd>Redis snapshot, 30s TTL</dd></div>
+                <div><dt>Indexes</dt><dd>migration 009</dd></div>
+              </dl>
+            </div>
+          </figure>
+        </section>
+
+        <section class="section" id="experience">
+          <h2>Experience</h2>
+
+          <article class="role">
+            <div class="role-head">
+              <h3>Backend Engineer</h3>
+              <p class="role-when">Feb – Aug 2026</p>
+            </div>
+            <p class="role-org">
+              Ghaya Go / Tayf — education and curriculum platform,
+              <a href="https://ghayaplatform.com" target="_blank" rel="noopener">ghayaplatform.com</a>
+            </p>
+
+            <p>
+              I was the primary backend contributor on a greenfield product:
+              one NestJS API serving an Expo mobile app and a Next.js CMS from a
+              single Turborepo monorepo. The CMS never writes curriculum tables
+              directly — it calls signed endpoints, so every business rule lives
+              in one place and every write lands in an audit log.
+            </p>
+
+            <div class="table-scroll">
+              <table class="routes">
+                <caption>API surface, six controllers</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Route</th>
+                    <th scope="col" class="num">Routes</th>
+                    <th scope="col">Caller</th>
+                    <th scope="col">Authorization</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"><code>/users/me/*</code></th>
+                    <td class="num">22</td>
+                    <td>Mobile learner</td>
+                    <td>Clerk JWT</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/cms/v1/*</code></th>
+                    <td class="num">28</td>
+                    <td>CMS editor</td>
+                    <td>Service key + signed actor ID</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/courses</code></th>
+                    <td class="num"></td>
+                    <td>Public catalog</td>
+                    <td>None</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/webhooks/*</code></th>
+                    <td class="num"></td>
+                    <td>Stripe</td>
+                    <td>Raw-body signature</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/health/*</code></th>
+                    <td class="num"></td>
+                    <td>Orchestrator</td>
+                    <td>None</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td class="num">54</td>
+                    <td colspan="2">~204 automated tests, ~65% API coverage</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <h4>Decisions I'd defend</h4>
+            <dl class="decisions">
+              <div>
+                <dt>One deployable, not services</dt>
+                <dd>
+                  Cross-module transactions mattered more than service boundaries
+                  at this team size. The module split is real; I'd extract later,
+                  not now.
+                </dd>
+              </div>
+              <div>
+                <dt>An aggregated endpoint instead of GraphQL</dt>
+                <dd>
+                  GraphQL is prettier on paper. Two clients, one backend
+                  engineer, and a mobile shape I already knew — so I shipped
+                  <code>/users/me/learn</code> and cached it.
+                </dd>
+              </div>
+              <div>
+                <dt>Cache invalidation beside the write</dt>
+                <dd>
+                  I write invalidation next to the write path on purpose. Hidden
+                  framework caching is how you get a stale learn tab and no idea
+                  why.
+                </dd>
+              </div>
+            </dl>
+
+            <p class="scope">
+              Pre-launch team product, private repository. My scope was backend
+              and API integration. Stripe ran in test mode; no live production
+              traffic, and no numbers here come from one.
+            </p>
+          </article>
+        </section>
+
+        <section class="section section-incidents" id="incidents">
+          <h2>Incidents</h2>
+          <p class="section-lede">
+            Three real bugs from Ghaya Go, with what actually caused them.
+            Not hypotheticals — and I'd walk through any of them line by line.
+          </p>
+
+          <figure class="console">
+            <figcaption>
+              <span class="method">POST</span>
+              <span class="route">/webhooks/stripe</span>
+              <span class="status status-fail">silent no-op</span>
+            </figcaption>
+            <div class="console-body">
+              <h3>Subscription renewals updated nothing</h3>
+              <dl class="incident">
+                <div>
+                  <dt>Symptom</dt>
+                  <dd>
+                    Checkout worked. Renewals returned 200 and changed no period
+                    end — so nobody noticed until a subscription should have
+                    lapsed.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Cause</dt>
+                  <dd>
+                    The handler cast <code>event.data.object</code> once as a
+                    Checkout Session, then reused that variable for
+                    <code>invoice.payment_succeeded</code>. Different shape, same
+                    binding, no type error at runtime.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Fix</dt>
+                  <dd>
+                    Branch per event type, map fields from
+                    <code>Stripe.Invoice</code>, and record the event ID before
+                    processing so a retry is a no-op rather than a second write.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </figure>
+
+          <figure class="console">
+            <figcaption>
+              <span class="method">GET</span>
+              <span class="route">/users/me/learn</span>
+              <span class="status status-warn">5 calls</span>
+            </figcaption>
+            <div class="console-body">
+              <h3>The learn tab over-fetched on every cold start</h3>
+              <dl class="incident">
+                <div>
+                  <dt>Symptom</dt>
+                  <dd>
+                    Mobile fired four or five parallel requests before the trail
+                    UI could render anything.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Cause</dt>
+                  <dd>
+                    No aggregated endpoint. Progress, modules, course progress,
+                    and lesson percentage each had their own route, and the
+                    client needed all of them to draw one screen.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Fix</dt>
+                  <dd>
+                    Built <code>GET /users/me/learn</code> as a single window
+                    over all four, added read indexes in migration 009, and
+                    cached the snapshot for 30 seconds. Down to about two calls.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </figure>
+
+          <figure class="console">
+            <figcaption>
+              <span class="method">POST</span>
+              <span class="route">/users/me/progress</span>
+              <span class="status status-fail">authz bypass</span>
+            </figcaption>
+            <div class="console-body">
+              <h3>Any learner could farm points from any course</h3>
+              <dl class="incident">
+                <div>
+                  <dt>Symptom</dt>
+                  <dd>
+                    An authenticated learner could post progress for any
+                    published task ID — including tasks in courses they had never
+                    enrolled in — and be awarded the points.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Cause</dt>
+                  <dd>
+                    Authentication was checked; authorization was not. Lesson,
+                    quiz, and task IDs were never verified against the caller's
+                    active course.
+                  </dd>
+                </div>
+                <div>
+                  <dt>Fix</dt>
+                  <dd>
+                    Active-course assertions on both the curriculum-read and
+                    gamification paths, so the ownership check happens before any
+                    write rather than after.
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </figure>
+        </section>
+
+        <section class="section" id="architecture">
+          <h2>Architecture</h2>
+          <p class="section-lede">
+            One API, two client classes with different trust levels, and the
+            services behind it.
+          </p>
+
+          <figure class="figure">
+            <div class="figure-scroll">
+              <svg
+                class="arch"
+                viewBox="0 0 920 340"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Expo mobile and Next.js CMS call one NestJS API on port 3001, which reads and writes PostgreSQL and Redis and integrates Clerk, Stripe, and S3."
+              >
+                <text class="arch-band" x="20" y="22">Clients</text>
+                <rect class="arch-box" x="20" y="34" width="200" height="52" />
+                <text class="arch-label" x="34" y="56">Expo mobile</text>
+                <text class="arch-sub" x="34" y="74">Clerk JWT, learner</text>
+                <rect class="arch-box" x="240" y="34" width="200" height="52" />
+                <text class="arch-label" x="254" y="56">Next.js CMS</text>
+                <text class="arch-sub" x="254" y="74">Service key, signed actor</text>
+
+                <line class="arch-line" x1="120" y1="86" x2="120" y2="118" />
+                <line class="arch-line" x1="340" y1="86" x2="340" y2="118" />
+                <line class="arch-line" x1="120" y1="118" x2="340" y2="118" />
+                <line class="arch-line" x1="230" y1="118" x2="230" y2="166" />
+
+                <text class="arch-band" x="20" y="154">NestJS API, port 3001</text>
+                <rect class="arch-box arch-box-key" x="20" y="166" width="880" height="58" />
+                <text class="arch-label on-key" x="34" y="188">/users/me/* · 22</text>
+                <text class="arch-label on-key" x="230" y="188">/cms/v1/* · 28</text>
+                <text class="arch-label on-key" x="430" y="188">/webhooks/*</text>
+                <text class="arch-label on-key" x="620" y="188">/courses · /health/*</text>
+                <text class="arch-sub on-key" x="34" y="208">learner reads and writes</text>
+                <text class="arch-sub on-key" x="230" y="208">editorial writes, audited</text>
+                <text class="arch-sub on-key" x="430" y="208">Stripe and Clerk events</text>
+                <text class="arch-sub on-key" x="620" y="208">catalog and probes</text>
+
+                <line class="arch-line" x1="120" y1="224" x2="120" y2="280" />
+                <line class="arch-line" x1="340" y1="224" x2="340" y2="280" />
+                <line class="arch-line" x1="545" y1="224" x2="545" y2="280" />
+                <line class="arch-line" x1="695" y1="224" x2="695" y2="280" />
+                <line class="arch-line" x1="840" y1="224" x2="840" y2="280" />
+
+                <text class="arch-band" x="20" y="268">Data</text>
+                <text class="arch-band" x="480" y="268">External</text>
+                <rect class="arch-box" x="20" y="280" width="200" height="46" />
+                <text class="arch-label" x="34" y="308">PostgreSQL</text>
+                <rect class="arch-box" x="240" y="280" width="200" height="46" />
+                <text class="arch-label" x="254" y="308">Redis</text>
+                <rect class="arch-box" x="480" y="280" width="130" height="46" />
+                <text class="arch-label" x="494" y="308">Clerk</text>
+                <rect class="arch-box" x="630" y="280" width="130" height="46" />
+                <text class="arch-label" x="644" y="308">Stripe</text>
+                <rect class="arch-box" x="780" y="280" width="120" height="46" />
+                <text class="arch-label" x="794" y="308">S3</text>
+              </svg>
+            </div>
+          </figure>
+        </section>
+
+        <section class="section" id="stack">
+          <h2>Stack</h2>
+          <p class="section-lede">
+            Things I've shipped with, not things I've read about.
+          </p>
+
+          <div class="stack-group">
+            <h3>Backend</h3>
+            <ul class="chips">
+              <li><b>Node.js</b></li>
+              <li><b>NestJS</b></li>
+              <li><b>TypeScript</b></li>
+              <li>REST API design</li>
+              <li>OpenAPI / Swagger</li>
+              <li>Laravel</li>
+              <li>PHP</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Data</h3>
+            <ul class="chips">
+              <li><b>PostgreSQL</b></li>
+              <li><b>Redis</b></li>
+              <li>Sequelize</li>
+              <li>Prisma</li>
+              <li>MySQL</li>
+              <li>SQL migrations</li>
+              <li>Indexing</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Getting it right</h3>
+            <ul class="chips">
+              <li>Transactions</li>
+              <li>Idempotency</li>
+              <li>Cache invalidation</li>
+              <li>Webhooks</li>
+              <li>JWT &amp; service auth</li>
+              <li>Zod validation</li>
+              <li>Audit logging</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Shipping it</h3>
+            <ul class="chips">
+              <li>Jest</li>
+              <li>Supertest</li>
+              <li>Docker</li>
+              <li>GitHub Actions</li>
+              <li>Health probes</li>
+              <li>Turborepo</li>
+              <li>Git</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section section-learn" id="learning">
+          <h2>Learning now</h2>
+          <p class="section-lede">
+            Every item here is an edge I actually hit on the job, not a tutorial
+            I haven't opened.
+          </p>
+
+          <div class="learn-grid">
+            <article class="learn-card">
+              <h3>Observability</h3>
+              <p>
+                On Ghaya Go I debugged from logs I'd written by hand. I want to
+                know a request is slow before someone tells me it is.
+              </p>
+              <span class="tools">Pino · request correlation IDs · Sentry</span>
+            </article>
+
+            <article class="learn-card">
+              <h3>Rate limiting</h3>
+              <p>
+                The API shipped without it. It was on my list and the launch date
+                came first — so it's the first thing I'm adding to my own
+                project.
+              </p>
+              <span class="tools">@nestjs/throttler</span>
+            </article>
+
+            <article class="learn-card">
+              <h3>End-to-end tests in CI</h3>
+              <p>
+                We had nine e2e tests that ran locally. Running them against a
+                real Postgres on every push is the version I want.
+              </p>
+              <span class="tools">Supertest · Dockerised Postgres</span>
+            </article>
+
+            <article class="learn-card">
+              <h3>Reading query plans</h3>
+              <p>
+                I added indexes in migration 009 because the endpoint felt slow.
+                I'd rather be able to prove it from the plan.
+              </p>
+              <span class="tools">EXPLAIN ANALYZE</span>
+            </article>
+          </div>
+
+          <p class="learn-note">
+            I'd rather tell you what I'm still learning than pretend the list is
+            empty. <span class="mark">Ask me about any of these in an
+            interview</span> and I'll tell you exactly how far I've got.
+          </p>
+        </section>
+
+        <section class="section" id="work">
+          <h2>Other work</h2>
+
+          <div class="work-grid">
+            <article class="work-item">
+              <h3>
+                <a href="https://github.com/Salad-man3/T-_Project" target="_blank" rel="noopener">T-_Project</a>
+              </h3>
+              <p class="work-meta">Laravel 11 REST API · public</p>
+              <p>
+                A citizen–municipality portal: municipalities publish news,
+                citizens file reports, administrators move them through states.
+                Sanctum token auth, full CRUD, server-side validation, soft
+                deletes, and
+                <a href="https://documenter.getpostman.com/view/36834914/2sAXxLBZom" target="_blank" rel="noopener">Postman documentation</a>
+                the frontend team worked from.
+              </p>
+            </article>
+
+            <article class="work-item">
+              <h3>Ribat</h3>
+              <p class="work-meta">NestJS + Prisma · in progress</p>
+              <p>
+                A multi-tenant, offline-first NestJS and Prisma platform for
+                community schools. Architecture is done — seven decision records,
+                tenant isolation, offline sync, a threat model — and I'm building
+                it out now. Public repo and a live deployment are the next
+                milestone.
+              </p>
+            </article>
+
+            <article class="work-item">
+              <h3>Voting platform</h3>
+              <p class="work-meta">Laravel · volunteer work</p>
+              <p>
+                Category-based voting with role-based access control, email
+                verification, schema design, and video and file upload
+                handling.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="contact">
+          <h2>Contact</h2>
+          <p class="section-lede">
+            Backend roles, contract work, or a question about anything above.
+            I answer everything.
+          </p>
+
+          <div class="contact-card">
+            <p class="email-line">
+              <a href="mailto:salahjoja1@gmail.com">salahjoja1@gmail.com</a>
+            </p>
+            <p class="copy-line">
+              <button
+                class="copy"
+                type="button"
+                id="copy-email"
+                data-email="salahjoja1@gmail.com"
+              >
+                Copy email
+              </button>
+              <span class="copy-status" id="copy-status" aria-live="polite"></span>
+            </p>
+
+            <ul class="contact-links">
+              <li><a href="cv/salah-joja-backend-engineer.pdf" target="_blank" rel="noopener">CV</a></li>
+              <li><a href="https://github.com/Salad-man3" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/salah-joja/" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+
+            <p class="edu">
+              Damascus University — B.S. candidate, Faculty of Information
+              Technology Engineering, expected 2028.
+            </p>
+          </div>
+        </section>
+
+        <footer class="foot">
+          <p>© <span id="year">2026</span> Salah Joja</p>
+          <p><a href="#top">Back to top</a></p>
+        </footer>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

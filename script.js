@@ -1,181 +1,208 @@
+/* Salah Joja — portfolio behaviour.
+   Four jobs: switch theme, collapse the section index on small screens, copy
+   the email address, and mark the section you're reading. The hero's one
+   animation is pure CSS, so nothing here touches motion. */
 (function () {
   "use strict";
 
-  document.documentElement.classList.add("js");
+  var root = document.documentElement;
+  var BREAKPOINT = 960;
 
-  var navToggle = document.querySelector(".nav-toggle");
-  var siteNav = document.getElementById("site-nav");
+  // Tells the stylesheet it may hide the index behind a toggle. Without JS the
+  // index stays open rather than becoming unreachable.
+  root.className += " js";
+
+  /* ------------------------------------------------------------- theme --- */
+
+  var THEME_KEY = "sj-site-theme";
+  var themeButtons = document.querySelectorAll("[data-theme-toggle]");
+
+  // Storage throws in private windows and when site data is blocked, so every
+  // access is guarded and the page still works without it.
+  function readTheme() {
+    try {
+      var saved = window.localStorage.getItem(THEME_KEY);
+      return saved === "light" || saved === "dark" ? saved : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function applyTheme(theme) {
+    root.setAttribute("data-theme", theme);
+    var light = theme === "light";
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", light ? "#f4f1ec" : "#0f1319");
+
+    for (var i = 0; i < themeButtons.length; i++) {
+      themeButtons[i].setAttribute("aria-pressed", light ? "true" : "false");
+      themeButtons[i].setAttribute(
+        "aria-label",
+        light ? "Switch to dark theme" : "Switch to light theme"
+      );
+    }
+  }
+
+  // Defaults to dark when nothing is stored. The OS preference is deliberately
+  // ignored: console-first is the intended design, not a fallback.
+  applyTheme(readTheme() || "dark");
+
+  for (var t = 0; t < themeButtons.length; t++) {
+    themeButtons[t].addEventListener("click", function () {
+      var next =
+        root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(next);
+      try {
+        window.localStorage.setItem(THEME_KEY, next);
+      } catch (error) {
+        /* preference simply won't persist */
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------- year --- */
+
   var year = document.getElementById("year");
-  var copyButton = document.getElementById("copy-email");
-  var copyFeedback = document.getElementById("copy-feedback");
-  var navLinks = document.querySelectorAll("[data-nav]");
-  var sections = [];
-
   if (year) {
     year.textContent = String(new Date().getFullYear());
   }
 
-  function closeNavigation(returnFocus) {
-    if (!navToggle || !siteNav) return;
+  /* -------------------------------------------------------------- nav --- */
 
-    navToggle.setAttribute("aria-expanded", "false");
-    siteNav.classList.remove("is-open");
-    document.body.classList.remove("nav-open");
+  var toggle = document.querySelector(".nav-toggle");
+  var index = document.getElementById("index-nav");
 
-    if (returnFocus) {
-      navToggle.focus();
-    }
+  function closeNav(restoreFocus) {
+    if (!toggle || !index) return;
+    index.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    if (restoreFocus) toggle.focus();
   }
 
-  if (navToggle && siteNav) {
-    navToggle.addEventListener("click", function () {
-      var willOpen = navToggle.getAttribute("aria-expanded") !== "true";
-      navToggle.setAttribute("aria-expanded", String(willOpen));
-      siteNav.classList.toggle("is-open", willOpen);
-      document.body.classList.toggle("nav-open", willOpen);
+  if (toggle && index) {
+    toggle.addEventListener("click", function () {
+      var open = index.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
 
-    siteNav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        closeNavigation(false);
-      });
+    index.addEventListener("click", function (event) {
+      if (event.target.closest("a")) closeNav(false);
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && siteNav.classList.contains("is-open")) {
-        closeNavigation(true);
+      if (event.key === "Escape" && index.classList.contains("is-open")) {
+        closeNav(true);
       }
     });
 
+    // Above the breakpoint the index is a permanent column, so drop the
+    // collapsed state rather than leaving a stale aria-expanded behind.
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 768) {
-        closeNavigation(false);
-      }
+      if (window.innerWidth >= BREAKPOINT) closeNav(false);
     });
   }
 
-  function showCopyMessage(message) {
-    if (!copyFeedback) return;
+  /* ------------------------------------------------------- copy email --- */
 
-    copyFeedback.textContent = message;
-    window.setTimeout(function () {
-      copyFeedback.textContent = "";
+  var copyButton = document.getElementById("copy-email");
+  var copyStatus = document.getElementById("copy-status");
+  var statusTimer;
+
+  function setStatus(message, state) {
+    if (!copyStatus) return;
+    copyStatus.textContent = message;
+    if (state) {
+      copyStatus.setAttribute("data-state", state);
+    } else {
+      copyStatus.removeAttribute("data-state");
+    }
+    window.clearTimeout(statusTimer);
+    statusTimer = window.setTimeout(function () {
+      copyStatus.textContent = "";
+      copyStatus.removeAttribute("data-state");
     }, 2800);
   }
 
+  // execCommand is deprecated but still the only fallback when the page is not
+  // in a secure context or the Clipboard API is blocked.
   function legacyCopy(text) {
     var field = document.createElement("textarea");
     field.value = text;
     field.setAttribute("readonly", "");
-    field.style.position = "fixed";
-    field.style.opacity = "0";
+    field.style.position = "absolute";
+    field.style.left = "-9999px";
     document.body.appendChild(field);
     field.select();
-
+    var ok = false;
     try {
-      document.execCommand("copy");
-      showCopyMessage("Email copied to clipboard.");
-    } catch (_error) {
-      showCopyMessage("Copy failed. Use the email link instead.");
+      ok = document.execCommand("copy");
+    } catch (error) {
+      ok = false;
     }
-
     document.body.removeChild(field);
+    return ok;
   }
 
   if (copyButton) {
     copyButton.addEventListener("click", function () {
-      var email = copyButton.getAttribute("data-email") || "salahjoja@gmail.com";
+      var email = copyButton.getAttribute("data-email") || "";
 
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(email).then(
           function () {
-            showCopyMessage("Email copied to clipboard.");
+            setStatus("Copied.");
           },
           function () {
-            legacyCopy(email);
-          },
+            setStatus("Copy failed. Use the address above.", "error");
+          }
         );
+        return;
+      }
+
+      if (legacyCopy(email)) {
+        setStatus("Copied.");
       } else {
-        legacyCopy(email);
+        setStatus("Copy failed. Use the address above.", "error");
       }
     });
   }
 
-  navLinks.forEach(function (link) {
-    var href = link.getAttribute("href");
-    if (!href || href.charAt(0) !== "#") return;
+  /* -------------------------------------------------------- scrollspy --- */
 
-    var section = document.querySelector(href);
-    if (section) {
-      sections.push({ id: href.slice(1), link: link, el: section });
-    }
-  });
+  var navLinks = Array.prototype.slice.call(
+    document.querySelectorAll(".index-list a[data-nav]")
+  );
 
-  function setActiveNav(id) {
+  if (navLinks.length && "IntersectionObserver" in window) {
+    var byId = {};
+    var targets = [];
+
     navLinks.forEach(function (link) {
-      var href = link.getAttribute("href") || "";
-      link.classList.toggle("is-active", href === "#" + id);
+      var id = link.getAttribute("href").slice(1);
+      var section = document.getElementById(id);
+      if (!section) return;
+      byId[id] = link;
+      targets.push(section);
     });
-  }
 
-  if (sections.length && "IntersectionObserver" in window) {
-    var observer = new IntersectionObserver(
+    var spy = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
+          var link = byId[entry.target.id];
+          if (!link) return;
           if (entry.isIntersecting) {
-            setActiveNav(entry.target.id);
+            navLinks.forEach(function (other) {
+              other.classList.remove("is-active");
+            });
+            link.classList.add("is-active");
           }
         });
       },
-      {
-        root: null,
-        rootMargin: "-40% 0px -45% 0px",
-        threshold: 0,
-      },
+      { rootMargin: "-40% 0px -45% 0px" }
     );
 
-    sections.forEach(function (item) {
-      observer.observe(item.el);
+    targets.forEach(function (section) {
+      spy.observe(section);
     });
-  }
-
-  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var revealElements = document.querySelectorAll("[data-reveal]");
-
-  function showReveals(elements) {
-    elements.forEach(function (el) {
-      el.classList.add("is-visible");
-    });
-  }
-
-  if (revealElements.length) {
-    if (reducedMotion.matches || !("IntersectionObserver" in window)) {
-      showReveals(revealElements);
-    } else {
-      var heroReveals = document.querySelectorAll(".hero-sequence [data-reveal]");
-      showReveals(heroReveals);
-
-      var revealObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          root: null,
-          rootMargin: "0px 0px -8% 0px",
-          threshold: 0.08,
-        },
-      );
-
-      revealElements.forEach(function (el) {
-        if (!el.closest(".hero-sequence")) {
-          revealObserver.observe(el);
-        }
-      });
-    }
   }
 })();
