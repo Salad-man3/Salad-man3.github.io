@@ -14,7 +14,7 @@
 
   /* ------------------------------------------------------------- theme --- */
 
-  var THEME_KEY = "sj-site-theme";
+  var THEME_KEY = "sj-site-theme-v2"; // v2: resets saved choices so dark is the default again
   var themeButtons = document.querySelectorAll("[data-theme-toggle]");
 
   // Storage throws in private windows and when site data is blocked, so every
