@@ -32,7 +32,7 @@
     root.setAttribute("data-theme", theme);
     var light = theme === "light";
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", light ? "#f4f1ec" : "#0f1319");
+    if (meta) meta.setAttribute("content", light ? "#f3f5f7" : "#142030");
 
     for (var i = 0; i < themeButtons.length; i++) {
       themeButtons[i].setAttribute("aria-pressed", light ? "true" : "false");

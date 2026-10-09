@@ -1,112 +1,75 @@
-/* Salah Joja — build log.
-   Two themes, one idea: what Salah claims sits on a surface, what the machine
-   produced sits in a console panel. Dark inverts the elevation rather than the
-   colour — panels are recessed into the page instead of raised above it — so
-   evidence stays visually distinct from assertion in both.
-   Colour means something: blue is structure, green is a thing that works,
-   coral is a warning. Labels are sans, machine values are mono. */
+/* Salah Joja — portfolio.
+   Ink-blue ground, paper-white type, one apricot accent (Damascus apricots,
+   not a brand colour). No texture, no lattice, no glow: the evidence on the
+   page — routes, incidents, diagrams — is the decoration. Mono is reserved
+   for things that are literally code. */
 
-/* Dark — the default. Blue-slate rather than black, and three semantic
-   accents rather than one neon, so it reads as a palette not a preset. */
 :root {
   color-scheme: dark;
 
-  --paper: #0e1113;
-  --paper-2: #1a1f23;
-  --card: #161a1e;
-  --ink: #e8ecee;
-  --ink-2: #9ba5ad;
-  --rule: #2a3137;
+  --paper: #142030;     /* ink-blue ground */
+  --paper-2: #1c2a3d;
+  --card: #18263a;
+  --ink: #eef1f4;
+  --ink-2: #a8b3c0;
+  --rule: #2c3d53;
 
-  --blue: #46b3a6;   /* patina — structure */
-  --blue-2: #67ccc0;
-  --blue-soft: #102e2b;
-  --coral: #d9705f;  /* quench glow — warning */
-  --coral-ink: #e28878;
-  --coral-soft: rgba(217, 112, 95, 0.18);
-  --green: #77c76a; /* tempered — a thing that works */
-  --green-soft: #16261a;
+  --blue: #eaa553;      /* apricot — links and structure */
+  --blue-2: #f4bd78;
+  --blue-soft: #2a2a2c;
+  --coral: #e5806e;
+  --coral-ink: #ee9a8a;
+  --coral-soft: rgba(234, 165, 83, 0.16);
+  --green: #9fd3a0;
+  --green-soft: #1a2d2a;
 
-  /* Recessed: darker than the page it sits in. */
-  --console: #07090a;
-  --console-2: #0e1214;
-  --console-ink: #e8ecee;
-  --console-dim: #909aa0;
-  --ok-on-console: #77c76a;
-  --warn-on-console: #d9a64e;  /* brass */
-  --fail-on-console: #d9705f;
+  --console: #0d1622;
+  --console-2: #111d2c;
+  --console-ink: #eef1f4;
+  --console-dim: #98a5b4;
+  --ok-on-console: #9fd3a0;
+  --warn-on-console: #eaa553;
+  --fail-on-console: #ee8a78;
 
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px -14px rgba(0, 0, 0, 0.7);
-  --panel-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    inset 0 8px 24px -14px rgba(0, 0, 0, 0.9);
+  --shadow: none;
+  --panel-shadow: none;
 
-  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "Spline Sans Mono", ui-monospace, "SF Mono", Menlo, monospace;
-
-  /* Damascus devices — the watered pattern of a folded billet, generated
-     in-page with feTurbulence banded into discrete layers. No asset to load. */
-  /* Straight banding stays for small parts (meters, captions) where the
-     turbulence pattern would just read as noise. */
-  --steel-bands: repeating-linear-gradient(115deg,
-    rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px,
-    transparent 1px, transparent 5px,
-    rgba(255,255,255,0.025) 5px, rgba(255,255,255,0.025) 7px,
-    transparent 7px, transparent 13px);
-  /* Etched lattice. Covers the whole page, so the line is much fainter than
-     a border would be — it should read as tooth on the metal, not as a grid. */
-  --girih-line: rgba(255, 255, 255, 0.045);
-  --girih: repeating-linear-gradient(45deg, var(--girih-line) 0 1px, transparent 1px 24px),
-    repeating-linear-gradient(-45deg, var(--girih-line) 0 1px, transparent 1px 24px),
-    repeating-linear-gradient(0deg, var(--girih-line) 0 1px, transparent 1px 48px),
-    repeating-linear-gradient(90deg, var(--girih-line) 0 1px, transparent 1px 48px);
-  --display: "Space Grotesk", var(--sans);
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --display: "IBM Plex Sans Condensed", var(--sans);
 
   --measure: 66ch;
   --gutter: clamp(1rem, 4vw, 2.5rem);
-  --rhythm: clamp(3.25rem, 7vw, 5.5rem);
-  --radius: 14px;
+  --rhythm: clamp(3.5rem, 8vw, 6rem);
+  --radius: 6px;
 }
 
-/* Light — the paper version. Same structure, raised panels. */
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --paper: #f4f5f4;
-  --paper-2: #e9ebea;
+  --paper: #f3f5f7;
+  --paper-2: #e6eaee;
   --card: #ffffff;
-  --ink: #14161a;
-  --ink-2: #545d62;
-  --rule: #d5d9d6;
+  --ink: #142030;
+  --ink-2: #4f5d6c;
+  --rule: #cfd6de;
 
-  --blue: #0f7368;
-  --blue-2: #0a5a51;
-  --blue-soft: #e2f0ee;
+  --blue: #8a4f0c;
+  --blue-2: #6e3e08;
+  --blue-soft: #f6eadb;
   --coral: #a8402f;
   --coral-ink: #94372a;
-  --coral-soft: #f7e5e1;
-  --green: #3b7631;
-  --green-soft: #e6f0e2;
+  --coral-soft: #f8e6cf;
+  --green: #2f6b3a;
+  --green-soft: #e3efe4;
 
-  --console: #101318;
-  --console-2: #1a1f27;
-  --console-ink: #e8eaee;
-  --console-dim: #98a1ae;
-  --ok-on-console: #5bd08d;
-  --warn-on-console: #e5ab48;
-  --fail-on-console: #f4796f;
-
-
-  --girih-line: rgba(20, 30, 30, 0.055);
-
-  --steel-bands: repeating-linear-gradient(115deg,
-    rgba(20,30,30,0.05) 0px, rgba(20,30,30,0.05) 1px,
-    transparent 1px, transparent 5px,
-    rgba(20,30,30,0.03) 5px, rgba(20,30,30,0.03) 7px,
-    transparent 7px, transparent 13px);
-
-  --shadow: 0 1px 2px rgba(20, 22, 26, 0.04),
-    0 8px 24px -12px rgba(20, 22, 26, 0.18);
-  --panel-shadow: var(--shadow);
+  --console: #142030;
+  --console-2: #1c2a3d;
+  --console-ink: #eef1f4;
+  --console-dim: #a8b3c0;
+  --ok-on-console: #9fd3a0;
+  --warn-on-console: #eaa553;
+  --fail-on-console: #ee8a78;
 }
 
 *,
@@ -123,53 +86,10 @@ html {
 body {
   margin: 0;
   background-color: var(--paper);
-  background-image: var(--girih);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1.0625rem;
   line-height: 1.62;
-}
-
-/* Both themes carry the lattice across the full page (see body above). The
-   old 30px square engineering grid is gone for good. */
-
-/* Fine grain so the large dark areas have tooth instead of reading as a flat
-   fill. Generated in-page, nothing extra to load. Light mode is plain paper. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-}
-
-:root[data-theme="light"] body::before {
-  display: none;
-}
-
-/* Forge heat across the top of the page — patina at the crown fading into the
-   dark. Anchored to the document, not to the hero, so there is no seam. */
-body::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 44rem;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    140% 100% at 50% -12%,
-    rgba(70, 179, 166, 0.16),
-    rgba(70, 179, 166, 0.05) 42%,
-    transparent 70%
-  );
-}
-
-:root[data-theme="light"] body::after {
-  display: none;
 }
 
 :focus-visible {
@@ -244,10 +164,9 @@ code {
 }
 
 .wordmark {
-  font-family: var(--mono);
-  font-size: 0.9375rem;
+  font-family: var(--display);
+  font-size: 1.125rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
   color: var(--ink);
   text-decoration: none;
 }
@@ -266,7 +185,7 @@ code {
   color: var(--ink);
   background: var(--card);
   border: 1px solid var(--rule);
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding: 0.35rem 1rem;
   cursor: pointer;
 }
@@ -315,12 +234,10 @@ code {
 
 .index-list a::before {
   content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 2px;
-  background: var(--rule);
+  width: 2px;
+  height: 1.1em;
+  background: transparent;
   flex: none;
-  transition: transform 150ms;
 }
 
 .index-list a:hover {
@@ -338,7 +255,6 @@ code {
 
 .index-list a.is-active::before {
   background: var(--blue);
-  transform: scale(1.35);
 }
 
 .index-out {
@@ -378,7 +294,7 @@ code {
   color: var(--ink);
   background: var(--card);
   border: 1px solid var(--rule);
-  border-radius: 999px;
+  border-radius: var(--radius);
   cursor: pointer;
 }
 
@@ -425,46 +341,21 @@ code {
 
 
 .now {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin: 0 0 1.5rem;
-  padding: 0.35rem 0.9rem 0.35rem 0.7rem;
-  background: var(--green-soft);
-  color: var(--green);
-  border-radius: 999px;
-  font-size: 0.875rem;
-  font-weight: 500;
+  margin: 0 0 1.25rem;
+  color: var(--ink-2);
+  font-size: 1rem;
 }
 
-.pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-  flex: none;
-  animation: pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
-}
 
 h1 {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(3rem, 10vw, 6rem);
-  font-weight: 700;
-  line-height: 0.9;
-  letter-spacing: -0.045em;
-  /* Stamped into steel: dark edge below, a hair of light above. */
-  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5), 0 -1px 0 rgba(255, 255, 255, 0.07);
+  font-size: clamp(3.25rem, 11vw, 6.5rem);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
 }
 
-:root[data-theme="light"] h1 {
-  text-shadow: none;
-}
 
 .lede {
   max-width: var(--measure);
@@ -504,7 +395,6 @@ h1 {
 
 .facts dd {
   margin: 0;
-  font-family: var(--mono);
   font-size: 0.9375rem;
 }
 
@@ -544,7 +434,6 @@ h1 {
 }
 
 .console figcaption {
-  background-image: var(--steel-bands);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -632,7 +521,6 @@ h1 {
 }
 
 .bar-after {
-  background-image: var(--steel-bands);
   width: calc(2 * var(--unit));
   background: var(--ok-on-console);
   animation: collapse 900ms cubic-bezier(0.33, 0.1, 0.2, 1) 450ms both;
@@ -701,51 +589,27 @@ h1 {
   padding-block: var(--rhythm) 0;
 }
 
-.content {
-  counter-reset: section;
-}
 
 .section > h2 {
-  position: relative;
   margin: 0;
-  padding-left: 3.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
   font-family: var(--display);
-  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  counter-increment: section;
+  font-size: clamp(1.75rem, 3.6vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 /* The tile is rotated; the numeral sits on top of it, upright. */
 .section > h2::before {
   content: "";
-  position: absolute;
-  left: 2px;
-  top: 50%;
-  width: 30px;
-  height: 30px;
-  transform: translateY(-50%) rotate(45deg);
-  background: var(--blue-soft);
-  border: 1px solid var(--blue);
-  border-radius: 5px;
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin: -1.3rem 0 1.15rem;
+  background: var(--blue);
 }
 
-.section > h2::after {
-  content: counter(section, decimal-leading-zero);
-  position: absolute;
-  left: 2px;
-  top: 50%;
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  transform: translateY(-50%);
-  color: var(--blue);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0;
-}
 
 
 .section-lede {
@@ -758,11 +622,6 @@ h1 {
 
 .role {
   margin-top: 2rem;
-  padding: 1.75rem;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
 }
 
 .role-head {
@@ -782,12 +641,8 @@ h1 {
 
 .role-when {
   margin: 0;
-  font-family: var(--mono);
-  font-size: 0.875rem;
-  color: var(--blue);
-  background: var(--blue-soft);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+  font-size: 0.9375rem;
+  color: var(--ink-2);
 }
 
 .role-org {
@@ -877,8 +732,6 @@ table.stack-table {
 .decisions > div {
   display: grid;
   gap: 0.2rem;
-  padding-left: 1rem;
-  border-left: 3px solid var(--blue-soft);
 }
 
 .decisions dt {
@@ -903,7 +756,7 @@ table.stack-table {
 .figure {
   margin: 2rem 0 0;
   padding: 1.5rem 1rem;
-  background: var(--card);
+  background: var(--paper-2);
   border: 1px solid var(--rule);
   border-radius: var(--radius);
 }
@@ -975,26 +828,23 @@ table.stack-table {
 }
 
 .chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
+  max-width: var(--measure);
 }
 
 .chips li {
-  font-family: var(--mono);
-  font-size: 0.875rem;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  padding: 0.3rem 0.8rem;
+  display: inline;
+}
+
+.chips li:not(:last-child)::after {
+  content: ", ";
+  color: var(--ink-2);
 }
 
 .chips li b {
   font-weight: 600;
-  color: var(--blue);
 }
 
 .stack-table {
@@ -1022,17 +872,13 @@ table.stack-table {
 /* ----------------------------------------------------------------- work -- */
 
 .work-grid {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.75rem;
+  margin-top: 1.25rem;
+  max-width: var(--measure);
 }
 
 .work-item {
-  padding: 1.35rem;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 
 .work-item h3 {
@@ -1042,14 +888,9 @@ table.stack-table {
 }
 
 .work-meta {
-  display: inline-block;
-  margin: 0.5rem 0 0.7rem;
-  font-family: var(--mono);
-  font-size: 0.8125rem;
+  margin: 0.2rem 0 0.5rem;
+  font-size: 0.9375rem;
   color: var(--ink-2);
-  background: var(--paper-2);
-  border-radius: 999px;
-  padding: 0.15rem 0.65rem;
 }
 
 .work-item p:last-child {
@@ -1061,17 +902,12 @@ table.stack-table {
 /* -------------------------------------------------------------- contact -- */
 
 .contact-card {
-  margin-top: 1.75rem;
-  padding: 2rem 1.75rem;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  margin-top: 1.5rem;
 }
 
 .email-line {
   margin: 0;
-  font-family: var(--mono);
+  font-family: var(--display);
   font-size: clamp(1.125rem, 3.6vw, 1.75rem);
   letter-spacing: -0.03em;
   word-break: break-all;
@@ -1092,7 +928,7 @@ table.stack-table {
   color: var(--card);
   background: var(--ink);
   border: 1px solid var(--ink);
-  border-radius: 999px;
+  border-radius: var(--radius);
   padding: 0.4rem 1rem;
   cursor: pointer;
 }
@@ -1147,11 +983,6 @@ table.stack-table {
 
 /* ------------------------------------------------------------ wide view -- */
 
-@media (min-width: 46rem) {
-  .work-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
 
 @media (min-width: 60rem) {
   .page {
@@ -1203,17 +1034,11 @@ table.stack-table {
     padding-top: 3.25rem;
   }
 
-  .role,
-  .contact-card {
-    padding: 2.25rem;
-  }
-
   .console-body {
     padding: 1.75rem;
   }
 
   .console figcaption {
-  background-image: var(--steel-bands);
     padding: 0.9rem 1.75rem;
   }
 }
@@ -1225,8 +1050,7 @@ table.stack-table {
     scroll-behavior: auto;
   }
 
-  .bar-after,
-  .pulse {
+  .bar-after {
     animation: none;
   }
 
@@ -1283,7 +1107,6 @@ table.stack-table {
   }
 
   .console figcaption {
-  background-image: var(--steel-bands);
     background: #f0f0f0;
   }
 

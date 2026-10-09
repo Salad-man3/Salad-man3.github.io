@@ -16,16 +16,16 @@
       property="og:description"
       content="Node.js and NestJS. I build APIs, data models, and the rules that decide who is allowed to do what."
     />
-    <meta name="theme-color" content="#0f1319" />
+    <meta name="theme-color" content="#142030" />
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232b45d4'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='600' fill='%23ffffff' text-anchor='middle'%3Esj%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23142030'/%3E%3Ctext x='16' y='22' font-family='ui-monospace,monospace' font-size='15' font-weight='600' fill='%23eaa553' text-anchor='middle'%3Esj%3C/text%3E%3C/svg%3E"
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -103,7 +103,7 @@
 
       <nav class="index" id="index-nav" aria-label="Page sections">
         <a class="wordmark wordmark-desk" href="#top">salah joja</a>
-        <p class="index-role">Software engineer · backend</p>
+        <p class="index-role">Backend software engineer</p>
 
         <button
           class="theme-toggle"
@@ -121,6 +121,7 @@
           <li><a href="#experience" data-nav>Experience</a></li>
           <li><a href="#incidents" data-nav>Incidents</a></li>
           <li><a href="#architecture" data-nav>Architecture</a></li>
+          <li><a href="#ribat" data-nav>Ribat</a></li>
           <li><a href="#stack" data-nav>Stack</a></li>
           <li><a href="#work" data-nav>Other work</a></li>
           <li><a href="#contact" data-nav>Contact</a></li>
@@ -140,7 +141,6 @@
       <main class="content" id="main">
         <section class="hero" id="top">
           <p class="now">
-            <span class="pulse" aria-hidden="true"></span>
             Open to work — Damascus or fully remote
           </p>
 
@@ -436,8 +436,8 @@
         <section class="section" id="architecture">
           <h2>Architecture</h2>
           <p class="section-lede">
-            One API, two client classes with different trust levels, and the
-            services behind it.
+            Ghaya Go: one API, two client classes with different trust levels,
+            and the services behind it.
           </p>
 
           <figure class="figure">
@@ -495,6 +495,176 @@
               </svg>
             </div>
           </figure>
+        </section>
+
+        <section class="section" id="ribat">
+          <h2>Ribat</h2>
+          <p class="section-lede">
+            My own project, in the open:
+            <a href="https://github.com/Salad-man3/ribat" target="_blank" rel="noopener">github.com/Salad-man3/ribat</a>.
+            A multi-tenant platform for mosque schools — Quran memorization
+            courses, members, families — in Arabic and English. Many schools
+            share one database, so the hard part is making sure one school can
+            never see another's people.
+          </p>
+
+          <article class="role">
+            <div class="table-scroll">
+              <table class="routes">
+                <caption>API surface built so far, under <code>/api/v1</code></caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Route</th>
+                    <th scope="col" class="num">Routes</th>
+                    <th scope="col">Caller</th>
+                    <th scope="col">Authorization</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row"><code>/auth/*</code></th>
+                    <td class="num">7</td>
+                    <td>Anyone with an account or setup code</td>
+                    <td>Rate-limited per IP, then a session cookie</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/members/*</code></th>
+                    <td class="num">13</td>
+                    <td>Teachers and school admins</td>
+                    <td>Session, CSRF token, organization, permission</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/organization</code>, <code>/memberships</code></th>
+                    <td class="num">7</td>
+                    <td>School admin; first-run setup</td>
+                    <td>Same chain; setup is rate-limited</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/wards</code></th>
+                    <td class="num">1</td>
+                    <td>Parents and guardians</td>
+                    <td>Only their own children</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/audit</code></th>
+                    <td class="num">1</td>
+                    <td>School admin</td>
+                    <td>Read-only</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/health/*</code></th>
+                    <td class="num">2</td>
+                    <td>Orchestrator</td>
+                    <td>None</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td class="num">31</td>
+                    <td colspan="2">Courses, groups, schedules, materials and prayer times are in progress</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <h4>Decisions I'd defend</h4>
+            <dl class="decisions">
+              <div>
+                <dt>Tenant scoping in one place, not in every query</dt>
+                <dd>
+                  A Prisma extension adds the school's ID to every query on a
+                  tenant table and throws if it's missing, so a forgotten
+                  <code>where</code> clause is a failing test, not a data leak.
+                  End-to-end tests run against two schools and check that the
+                  other school's records come back as 404.
+                </dd>
+              </div>
+              <div>
+                <dt>Cookie sessions instead of JWTs</dt>
+                <dd>
+                  Sessions live in the database, so signing a device out or
+                  changing a password ends access immediately. The price is a
+                  CSRF token on every write, which I took.
+                </dd>
+              </div>
+              <div>
+                <dt>No self-signup</dt>
+                <dd>
+                  Staff create accounts and hand out a one-time setup code; the
+                  person picks their own password, hashed with Argon2id.
+                  Teachers never type anyone's password, and nobody needs an
+                  email address to get in.
+                </dd>
+              </div>
+              <div>
+                <dt>No event bus until a second consumer exists</dt>
+                <dd>
+                  The first slices use direct calls. A queue with one subscriber
+                  is indirection with no benefit; the outbox design is written
+                  down and waits until notifications need it.
+                </dd>
+              </div>
+            </dl>
+          </article>
+
+          <figure class="figure">
+            <div class="figure-scroll">
+              <svg
+                class="arch"
+                viewBox="0 0 920 430"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="A React PWA calls the NestJS API through Caddy. Every request passes a rate limit, session cookie, CSRF, organization and permission check. A Prisma extension scopes every tenant query to the organization before it reaches PostgreSQL. Redis is health-checked and will carry background jobs."
+              >
+                <text class="arch-band" x="20" y="22">Client</text>
+                <rect class="arch-box" x="20" y="34" width="420" height="52" />
+                <text class="arch-label" x="34" y="56">React PWA</text>
+                <text class="arch-sub" x="34" y="74">staff, members and guardians, Arabic and English</text>
+                <line class="arch-line" x1="440" y1="60" x2="480" y2="60" />
+                <rect class="arch-box" x="480" y="34" width="200" height="52" />
+                <text class="arch-label" x="494" y="56">Caddy</text>
+                <text class="arch-sub" x="494" y="74">TLS and reverse proxy</text>
+
+                <line class="arch-line" x1="580" y1="86" x2="580" y2="140" />
+
+                <text class="arch-band" x="20" y="128">NestJS API, one Docker image, migrates on boot</text>
+                <rect class="arch-box arch-box-key" x="20" y="140" width="880" height="92" />
+                <text class="arch-label on-key" x="34" y="166">/auth</text>
+                <text class="arch-label on-key" x="170" y="166">/members</text>
+                <text class="arch-label on-key" x="330" y="166">/organization</text>
+                <text class="arch-label on-key" x="510" y="166">/memberships</text>
+                <text class="arch-label on-key" x="690" y="166">/wards /audit</text>
+                <text class="arch-sub on-key" x="34" y="194">every request: rate limit, session cookie, CSRF token, organization context, permission</text>
+                <text class="arch-sub on-key" x="34" y="214">Zod contracts shared with the PWA; Pino logs carry a request ID that the audit log records too</text>
+
+                <line class="arch-line" x1="300" y1="232" x2="300" y2="282" />
+                <line class="arch-line" x1="780" y1="232" x2="780" y2="362" />
+
+                <text class="arch-band" x="20" y="272">Tenant boundary</text>
+                <rect class="arch-box" x="20" y="282" width="580" height="52" />
+                <text class="arch-label" x="34" y="304">Prisma tenant extension</text>
+                <text class="arch-sub" x="34" y="322">adds organizationId to every tenant query, throws if it is missing</text>
+
+                <line class="arch-line" x1="300" y1="334" x2="300" y2="362" />
+
+                <text class="arch-band" x="20" y="354">Data</text>
+                <rect class="arch-box" x="20" y="362" width="580" height="52" />
+                <text class="arch-label" x="34" y="384">PostgreSQL</text>
+                <text class="arch-sub" x="34" y="402">one shared schema, append-only audit log, households and guardians</text>
+                <rect class="arch-box" x="640" y="362" width="260" height="52" />
+                <text class="arch-label" x="654" y="384">Redis</text>
+                <text class="arch-sub" x="654" y="402">health-checked; BullMQ jobs next</text>
+              </svg>
+            </div>
+          </figure>
+
+          <p class="scope">
+            Solo project, AGPL-licensed, not deployed yet. CI runs lint,
+            typecheck, unit tests and end-to-end tests against real Postgres
+            and Redis on every push.
+          </p>
         </section>
 
         <section class="section" id="stack">
@@ -565,7 +735,7 @@
               <h3>
                 <a href="https://github.com/Salad-man3/T-_Project" target="_blank" rel="noopener">T-_Project</a>
               </h3>
-              <p class="work-meta">Laravel 11 REST API · public</p>
+              <p class="work-meta">Laravel 11 REST API, public repo</p>
               <p>
                 A citizen–municipality portal: municipalities publish news,
                 citizens file reports, administrators move them through states.
@@ -577,25 +747,8 @@
             </article>
 
             <article class="work-item">
-              <h3>
-                <a href="https://github.com/Salad-man3/ribat" target="_blank" rel="noopener">Ribat</a>
-              </h3>
-              <p class="work-meta">NestJS · Prisma · React PWA · public</p>
-              <p>
-                A multi-tenant platform for mosque schools, in Arabic and
-                English. One Prisma extension scopes every tenant query to its
-                organization, and e2e tests check that one school can't read
-                another's data. Argon2id passwords, revocable cookie sessions,
-                CSRF and rate limits, role-based permissions, an append-only
-                audit log, guardians and households, CSV import, request-ID
-                logging, CI and a production Docker image. Courses and
-                scheduling are in progress.
-              </p>
-            </article>
-
-            <article class="work-item">
               <h3>Voting platform</h3>
-              <p class="work-meta">Laravel · volunteer work</p>
+              <p class="work-meta">Laravel, volunteer work</p>
               <p>
                 Category-based voting with role-based access control, email
                 verification, schema design, and video and file upload
