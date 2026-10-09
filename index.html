@@ -577,14 +577,19 @@
             </article>
 
             <article class="work-item">
-              <h3>Ribat</h3>
-              <p class="work-meta">NestJS + Prisma · in progress</p>
+              <h3>
+                <a href="https://github.com/Salad-man3/ribat" target="_blank" rel="noopener">Ribat</a>
+              </h3>
+              <p class="work-meta">NestJS · Prisma · React PWA · public</p>
               <p>
-                A multi-tenant, offline-first NestJS and Prisma platform for
-                community schools. Architecture is done — seven decision records,
-                tenant isolation, offline sync, a threat model — and I'm building
-                it out now. Public repo and a live deployment are the next
-                milestone.
+                A multi-tenant platform for mosque schools, in Arabic and
+                English. One Prisma extension scopes every tenant query to its
+                organization, and e2e tests check that one school can't read
+                another's data. Argon2id passwords, revocable cookie sessions,
+                CSRF and rate limits, role-based permissions, an append-only
+                audit log, guardians and households, CSV import, request-ID
+                logging, CI and a production Docker image. Courses and
+                scheduling are in progress.
               </p>
             </article>
 
