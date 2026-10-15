@@ -1117,3 +1117,52 @@ table.stack-table {
     box-shadow: none;
   }
 }
+
+/* ---------------------------------------------------------------- ribat -- */
+
+.figure-video {
+  padding: 0;
+  overflow: hidden;
+}
+
+.figure-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--console);
+}
+
+.figure-video figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+
+.shot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+  align-items: start;
+}
+
+.shot {
+  margin: 0;
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 26rem;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+.shot figcaption {
+  margin-top: 0.4rem;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}

@@ -503,15 +503,43 @@
             My own project, in the open:
             <a href="https://github.com/Salad-man3/ribat" target="_blank" rel="noopener">github.com/Salad-man3/ribat</a>.
             A multi-tenant platform for mosque schools — Quran memorization
-            courses, members, families — in Arabic and English. Many schools
-            share one database, so the hard part is making sure one school can
-            never see another's people.
+            courses, attendance a teacher takes on a phone with no internet,
+            families, homework and notifications — in Arabic and English. Many
+            schools share one database, so the hard part is making sure one
+            school can never see another's people, and that a phone that was
+            offline for a whole class can never count anything twice.
           </p>
+
+          <figure class="figure figure-video">
+            <video controls preload="none" playsinline poster="ribat/poster.jpg" width="1280" height="720">
+              <source src="ribat/ribat-walkthrough.mp4" type="video/mp4" />
+              <a href="ribat/ribat-walkthrough.mp4">Download the walkthrough (MP4, 1.2 MB)</a>
+            </video>
+            <figcaption>
+              Two-minute walkthrough: the sheikh&rsquo;s tools, a guardian&rsquo;s
+              view, and a teacher&rsquo;s phone going offline mid-class.
+            </figcaption>
+          </figure>
+
+          <div class="shot-grid">
+            <figure class="shot">
+              <img src="ribat/class-mode-offline.jpg" alt="Class mode on a phone, offline, with three changes waiting" loading="lazy" width="780" height="1688" />
+              <figcaption>Class mode, offline</figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="ribat/guardian-home.jpg" alt="Family portal: a child's week, attendance rate, memorization and homework" loading="lazy" width="1265" height="1014" />
+              <figcaption>Family portal</figcaption>
+            </figure>
+            <figure class="shot">
+              <img src="ribat/homework.jpg" alt="Staff course page with homework tracked to done and open" loading="lazy" width="1280" height="800" />
+              <figcaption>Homework, tracked</figcaption>
+            </figure>
+          </div>
 
           <article class="role">
             <div class="table-scroll">
               <table class="routes">
-                <caption>API surface built so far, under <code>/api/v1</code></caption>
+                <caption>API surface of the beta, under <code>/api/v1</code></caption>
                 <thead>
                   <tr>
                     <th scope="col">Route</th>
@@ -529,7 +557,7 @@
                   </tr>
                   <tr>
                     <th scope="row"><code>/members/*</code></th>
-                    <td class="num">13</td>
+                    <td class="num">14</td>
                     <td>Teachers and school admins</td>
                     <td>Session, CSRF token, organization, permission</td>
                   </tr>
@@ -540,10 +568,22 @@
                     <td>Same chain; setup is rate-limited</td>
                   </tr>
                   <tr>
-                    <th scope="row"><code>/wards</code></th>
-                    <td class="num">1</td>
-                    <td>Parents and guardians</td>
-                    <td>Only their own children</td>
+                    <th scope="row"><code>/courses/*</code>, <code>/materials</code></th>
+                    <td class="num">34</td>
+                    <td>Staff; teachers for their own course</td>
+                    <td>Same chain, plus an active teaching assignment</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/sync/mutations</code>, <code>/class-kit</code>, <code>/sessions</code>, <code>/memorization</code>, <code>/material-logs</code></th>
+                    <td class="num">12</td>
+                    <td>Teachers, online and replaying offline</td>
+                    <td>Re-checked at replay time; teacher reaches only their own group</td>
+                  </tr>
+                  <tr>
+                    <th scope="row"><code>/wards</code>, <code>/schedule</code>, <code>/excuses</code>, <code>/homework</code>, <code>/notifications</code></th>
+                    <td class="num">11</td>
+                    <td>Parents, members, staff</td>
+                    <td>Only their own children and themselves</td>
                   </tr>
                   <tr>
                     <th scope="row"><code>/audit</code></th>
@@ -561,8 +601,8 @@
                 <tfoot>
                   <tr>
                     <th scope="row">Total</th>
-                    <td class="num">31</td>
-                    <td colspan="2">Courses, groups, schedules, materials and prayer times are in progress</td>
+                    <td class="num">94</td>
+                    <td colspan="2">Including setup, prayer times, audit and the failed-events view; an e2e sweep checks every tenant route answers 404 to another school</td>
                   </tr>
                 </tfoot>
               </table>
@@ -598,11 +638,24 @@
                 </dd>
               </div>
               <div>
-                <dt>No event bus until a second consumer exists</dt>
+                <dt>Offline writes carry no authority of their own</dt>
                 <dd>
-                  The first slices use direct calls. A queue with one subscriber
-                  is indirection with no benefit; the outbox design is written
-                  down and waits until notifications need it.
+                  The phone queues each tap with an idempotency key made once,
+                  at the tap. The server replays a batch in per-student lanes,
+                  checks the teacher's permissions as they are <em>now</em>,
+                  and writes the row, its sync record and its audit entry in one
+                  transaction. A resent batch comes back as duplicates; a
+                  teacher removed mid-class gets refusals, never rows.
+                </dd>
+              </div>
+              <div>
+                <dt>An event bus once a second consumer existed</dt>
+                <dd>
+                  The first slices used direct calls. When notifications,
+                  nightly summaries and archive clean-up arrived, events moved
+                  to a transactional outbox: written with the change, fanned out
+                  by a <code>SKIP LOCKED</code> dispatcher to BullMQ, idempotent
+                  per handler, and dead-lettered where staff can see and retry.
                 </dd>
               </div>
             </dl>
@@ -616,7 +669,7 @@
                 preserveAspectRatio="xMidYMid meet"
                 xmlns="http://www.w3.org/2000/svg"
                 role="img"
-                aria-label="A React PWA calls the NestJS API through Caddy. Every request passes a rate limit, session cookie, CSRF, organization and permission check. A Prisma extension scopes every tenant query to the organization before it reaches PostgreSQL. Redis is health-checked and will carry background jobs."
+                aria-label="A React PWA calls the NestJS API through Caddy. Every request passes a rate limit, session cookie, CSRF, organization and permission check. A Prisma extension scopes every tenant query to the organization before it reaches PostgreSQL. Redis carries BullMQ jobs: event deliveries, session generation and nightly summaries."
               >
                 <text class="arch-band" x="20" y="22">Client</text>
                 <rect class="arch-box" x="20" y="34" width="420" height="52" />
@@ -655,15 +708,16 @@
                 <text class="arch-sub" x="34" y="402">one shared schema, append-only audit log, households and guardians</text>
                 <rect class="arch-box" x="640" y="362" width="260" height="52" />
                 <text class="arch-label" x="654" y="384">Redis</text>
-                <text class="arch-sub" x="654" y="402">health-checked; BullMQ jobs next</text>
+                <text class="arch-sub" x="654" y="402">BullMQ: outbox, sessions, nightly</text>
               </svg>
             </div>
           </figure>
 
           <p class="scope">
-            Solo project, AGPL-licensed, not deployed yet. CI runs lint,
-            typecheck, unit tests and end-to-end tests against real Postgres
-            and Redis on every push.
+            Solo project, AGPL-licensed, tagged <code>v0.1.0-beta</code>, not
+            deployed yet. 220 automated tests; CI runs lint, typecheck, unit
+            tests and end-to-end tests against real Postgres and Redis on every
+            push.
           </p>
         </section>
 
