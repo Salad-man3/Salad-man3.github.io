@@ -149,6 +149,7 @@ export const toolbox: Tool[] = [
   { name: "MySQL", icon: "/assets/icons/mysql.svg", use: "Laravel projects and local dev stacks." },
   { name: "SQL", icon: "/assets/icons/sql.svg", use: "Constraints, indexes, and transactional writes in both ORMs." },
   { name: "Docker", icon: "/assets/icons/docker.svg", use: "Local stacks, health probes, Ribat Docker compose." },
+  { name: "Linux", icon: "/assets/icons/linux.svg", use: "Daily environment: shells, services, and local Docker stacks." },
 ];
 
 export const ghayaDeep = {
