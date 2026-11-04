@@ -4,6 +4,4 @@ dist/
 .env
 .DS_Store
 portfolio-verify/
-/assets/
-/ghaya/
-/ribat/
+/ribat/git-diagrams/
