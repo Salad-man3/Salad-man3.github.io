@@ -94,8 +94,8 @@ export const ribatHome = {
     { strong: "Family portal", text: "Homework, excuses, and notifications in the reader's language." },
   ] as Chip[],
   tabs: [
-    { id: "class", label: "Class mode", src: "/ribat/class-mode-desktop.webp", alt: "Class attendance on desktop." },
     { id: "student", label: "Student", src: "/ribat/student-attendance-desktop.webp", alt: "Student profile on desktop." },
+    { id: "class", label: "Class mode", src: "/ribat/class-mode-desktop.webp", alt: "Class attendance on desktop." },
     { id: "guardian", label: "Family portal", src: "/ribat/guardian-portal-desktop.webp", alt: "Family portal on desktop." },
     { id: "reports", label: "Staff reports", src: "/ribat/sheikh-reports-desktop.webp", alt: "Staff reports dashboard." },
   ] as ScreenTab[],
