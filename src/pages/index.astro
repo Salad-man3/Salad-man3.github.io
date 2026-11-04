@@ -1,0 +1,137 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Sheet from "@/components/Sheet.astro";
+import { TechnicalDetails } from "@/components/TechnicalDetails";
+import { ScreenTabs } from "@/components/ScreenTabs";
+import { CopyEmail } from "@/components/CopyEmail";
+import { ghayaHome, ribatHome, site, toolbox } from "@/data/projects";
+---
+<BaseLayout title="Salah Joja — Software Engineer (Backend) | Node.js, NestJS, PostgreSQL">
+  <Sheet badge="Open to work" hero>
+    <h1 slot="title" class="text-3xl font-semibold tracking-tight md:text-4xl">
+      Salah Joja
+      <span class="name-ar mt-1 block text-2xl font-normal text-accent md:text-3xl" lang="ar" dir="rtl">صلاح الدين الجوجه</span>
+    </h1>
+    <p class="prose-measure text-lg text-primary-foreground/95">
+      Backend-focused software engineer. Fascinated with building and exploring how systems operate under the hood.
+    </p>
+    <ul class="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium underline-offset-4 [&_a]:underline">
+      <li><a href="/cv/salah-joja-software-engineer.pdf">CV (PDF)</a></li>
+      <li><a href={`mailto:${site.email}`}>Email</a></li>
+      <li><a href="https://github.com/Salad-man3">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/salah-joja/">LinkedIn</a></li>
+    </ul>
+  </Sheet>
+
+  <h2 class="text-xl font-semibold tracking-tight">Experience</h2>
+  <Sheet meta={ghayaHome.meta} id="ghaya">
+    <h3 slot="title" class="text-2xl font-semibold tracking-tight">{ghayaHome.title}</h3>
+    <p class="prose-measure">{ghayaHome.lede}</p>
+    <h4 class="mt-6 text-base font-semibold">What I did</h4>
+    <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm">
+      {ghayaHome.whatIDid.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+    <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+      {ghayaHome.problems.map((p) => (
+        <li class="rounded-lg border-2 border-border bg-secondary p-3 text-sm">
+          <p class="font-mono text-xs font-medium text-accent">{p.kind}</p>
+          <p class="mt-1 font-semibold">{p.title}</p>
+          <p class="mt-1 text-muted-foreground">{p.detail}</p>
+        </li>
+      ))}
+    </ul>
+    <ul class="mt-4 grid gap-3 sm:grid-cols-3">
+      {ghayaHome.chips.map((c) => (
+        <li class="rounded-lg border bg-muted/40 p-3 text-sm">
+          <strong class="block font-semibold">{c.strong}</strong>
+          <span class="text-muted-foreground">{c.text}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-6 text-xs text-muted-foreground">Screens from the Expo app the API served (not my UI work).</p>
+    <div class="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {ghayaHome.screens.map((s) => (
+        <figure class="m-0 text-center">
+          <img src={s.src} alt={s.alt} width={780} height={1690} loading="lazy" class="mx-auto w-full max-w-[220px] rounded-md border shadow-sm" />
+          <figcaption class="mt-1 text-xs text-muted-foreground">{s.label}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <TechnicalDetails
+      client:load
+      subline={ghayaHome.technicalSubline}
+      diagrams={ghayaHome.diagrams}
+      decisions={ghayaHome.decisions}
+      links={[{ href: ghayaHome.writeUpHref, label: "Full write-up: routes, two bugs, decisions" }]}
+    />
+  </Sheet>
+
+  <h2 class="text-xl font-semibold tracking-tight">Open source</h2>
+  <Sheet meta={ribatHome.meta} id="ribat">
+    <h3 slot="title" class="text-2xl font-semibold tracking-tight">
+      {ribatHome.title} <span class="name-ar font-normal" lang="ar" dir="rtl">{ribatHome.titleAr}</span>
+    </h3>
+    <p class="prose-measure">{ribatHome.lede}</p>
+    <ul class="my-4 grid gap-3 sm:grid-cols-3">
+      {ribatHome.chips.map((c) => (
+        <li class="rounded-lg border bg-muted/40 p-3 text-sm">
+          <strong class="block font-semibold">{c.strong}</strong>
+          <span class="text-muted-foreground">{c.text}</span>
+        </li>
+      ))}
+    </ul>
+    <ScreenTabs client:load tabs={ribatHome.tabs} />
+    <p class="text-sm text-muted-foreground">{ribatHome.statusNote}</p>
+    <details class="mt-4">
+      <summary class="cursor-pointer font-medium">Watch the five-minute tour (English, Arabic subtitles)</summary>
+      <video controls preload="none" playsinline poster="/ribat/poster.jpg" class="mt-2 w-full max-w-3xl rounded-lg border">
+        <source src="/ribat/ribat-tour.mp4" type="video/mp4" />
+      </video>
+    </details>
+    <TechnicalDetails
+      client:load
+      subline={ribatHome.technicalSubline}
+      diagrams={ribatHome.diagrams}
+      decisions={ribatHome.decisions}
+      links={ribatHome.links}
+      phoneShot={ribatHome.phoneShot}
+    />
+  </Sheet>
+
+  <h2 class="text-xl font-semibold tracking-tight">Education</h2>
+  <Sheet>
+    <p class="prose-measure">Damascus University, B.Sc. Software Engineering, expected 2028.</p>
+  </Sheet>
+
+  <h2 class="text-xl font-semibold tracking-tight">Earlier</h2>
+  <Sheet>
+    <p class="prose-measure">
+      <a class="underline-offset-4 hover:underline" href="https://github.com/Salad-man3/T-_Project">T-_Project</a>
+      — Laravel 11 REST API with
+      <a class="underline-offset-4 hover:underline" href="https://documenter.getpostman.com/view/36834914/2sAXxLBZom">Postman docs</a>.
+    </p>
+  </Sheet>
+
+  <h2 class="text-xl font-semibold tracking-tight">Toolbox</h2>
+  <Sheet>
+    <ul class="grid gap-3 sm:grid-cols-2">
+      {toolbox.map((t) => (
+        <li class="flex gap-3 rounded-lg border p-3">
+          <img src={t.icon} alt="" width={40} height={40} class="mt-0.5 size-10 shrink-0 rounded-[10px]" />
+          <div>
+            <p class="font-semibold">{t.name}</p>
+            <p class="text-sm text-muted-foreground">{t.use}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Sheet>
+
+  <h2 class="text-xl font-semibold tracking-tight">Contact</h2>
+  <Sheet badge="Open to work">
+    <p class="prose-measure">Email is the fastest way to reach me. Damascus, UTC+3.</p>
+    <p class="mt-3"><CopyEmail client:load email={site.email} /></p>
+  </Sheet>
+</BaseLayout>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" role="img" aria-label="Expo and CMS call NestJS API backed by PostgreSQL, Redis, and Clerk">
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#0f3a5f"/>
+    </marker>
+  </defs>
+
+  <rect x="20" y="30" width="120" height="44" rx="4" fill="#e8f0f8" stroke="#0f3a5f"/>
+  <text x="80" y="58" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#14202b">Expo mobile</text>
+  <rect x="20" y="90" width="120" height="44" rx="4" fill="#e8f0f8" stroke="#0f3a5f"/>
+  <text x="80" y="118" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#14202b">Next.js CMS</text>
+  <rect x="220" y="60" width="140" height="56" rx="4" fill="#0f3a5f"/>
+  <text x="290" y="94" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#d6e6f3">NestJS API</text>
+  <rect x="440" y="20" width="120" height="40" rx="4" fill="#f2f5f7" stroke="#0f3a5f"/>
+  <text x="500" y="45" text-anchor="middle" font-size="12" fill="#14202b">PostgreSQL</text>
+  <rect x="440" y="75" width="120" height="40" rx="4" fill="#f2f5f7" stroke="#0f3a5f"/>
+  <text x="500" y="100" text-anchor="middle" font-size="12" fill="#14202b">Redis</text>
+  <rect x="440" y="130" width="120" height="40" rx="4" fill="#f2f5f7" stroke="#0f3a5f"/>
+  <text x="500" y="155" text-anchor="middle" font-size="12" fill="#14202b">Clerk</text>
+  <path d="M140 52 L218 78" stroke="#0f3a5f" stroke-width="2" fill="none" marker-end="url(#a)"/>
+  <path d="M140 112 L218 98" stroke="#0f3a5f" stroke-width="2" fill="none"/>
+  <path d="M360 88 L438 40 M360 88 L438 95 M360 88 L438 150" stroke="#0f3a5f" stroke-width="2" fill="none"/>
+</svg>

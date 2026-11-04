@@ -1,0 +1,9 @@
+sequenceDiagram
+  participant A as Request A
+  participant B as Request B
+  participant DB as PostgreSQL
+  A->>DB: check completion
+  B->>DB: check completion
+  A->>DB: insert row
+  B->>DB: insert row
+  Note over DB: UNIQUE user_id task_id rejects second insert

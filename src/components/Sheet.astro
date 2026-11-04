@@ -1,0 +1,47 @@
+---
+interface Props {
+  sheet?: string;
+  meta?: string;
+  badge?: string;
+  id?: string;
+  hero?: boolean;
+}
+const { sheet, meta, badge, id, hero = false } = Astro.props;
+---
+<section
+  id={id}
+  class:list={[
+    "rounded-xl border bg-card py-6 text-card-foreground shadow-md",
+    hero && "border-primary bg-primary text-primary-foreground shadow-lg",
+  ]}
+>
+  <header class="space-y-1 px-6">
+    {(sheet || meta || badge) && (
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        {sheet && (
+          <p class:list={["text-sm font-medium", hero ? "text-primary-foreground/80" : "text-muted-foreground"]}>{sheet}</p>
+        )}
+        {meta && (
+          <p class:list={["text-sm", hero ? "text-primary-foreground/80" : "text-muted-foreground", !sheet && !badge && "ml-auto"]}>{meta}</p>
+        )}
+        {badge && (
+          <p class:list={["m-0", !sheet && !meta && "ml-auto"]}>
+            <span class:list={[
+              "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold",
+              hero
+                ? "bg-accent text-accent-foreground"
+                : "border border-accent/50 bg-accent text-accent-foreground",
+            ]}>
+              <span class="size-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+              {badge}
+            </span>
+          </p>
+        )}
+      </div>
+    )}
+    <slot name="title" />
+  </header>
+  <div class="min-w-0 px-4 pt-4 sm:px-6">
+    <slot />
+  </div>
+</section>

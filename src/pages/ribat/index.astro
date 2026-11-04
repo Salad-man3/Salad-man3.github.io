@@ -1,0 +1,71 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Sheet from "@/components/Sheet.astro";
+import { DeepDiagramSection } from "@/components/DeepDiagramSection";
+import { DeepDecisions } from "@/components/DeepDecisions";
+import { ribatHome } from "@/data/projects";
+const deepDiagrams = [
+  ...ribatHome.diagrams.filter((d) => !d.hidden),
+  { id: "ribat-monorepo-layout", src: "/ribat/diagrams/ribat-monorepo-layout.webp", alt: "Monorepo layout", caption: "Monorepo layout." },
+  { id: "wf-05-class-mode", src: "/ribat/diagrams/wf-05-class-mode.webp", alt: "Class mode workflow", caption: "Class mode workflow." },
+];
+---
+<BaseLayout title="Ribat, under the hood — Salah Joja">
+  <nav class="text-sm"><a href="/#ribat" class="underline-offset-4 hover:underline">Salah Joja</a></nav>
+
+  <Sheet meta="AGPL · public beta · not deployed yet">
+    <h1 slot="title" class="text-2xl font-semibold tracking-tight md:text-3xl">
+      Ribat, under the hood <span class="name-ar font-normal" lang="ar" dir="rtl">رباط</span>
+    </h1>
+    <p class="prose-measure">Many mosques share one database, so the hard part is making sure one mosque can never see another's people, and that a phone that was offline for a whole class can never count anything twice.</p>
+    <p class="text-sm"><a href="https://github.com/Salad-man3/ribat" class="underline">github.com/Salad-man3/ribat</a></p>
+  </Sheet>
+
+  <Sheet>
+    <h2 slot="title" class="text-xl font-semibold">The shape</h2>
+    <p class="text-sm text-muted-foreground">React PWA and teacher phones call one NestJS API. Every request passes rate limit, session, CSRF, organization, and permission checks before a Prisma tenant extension scopes queries to PostgreSQL; workers drain the outbox on Redis.</p>
+  </Sheet>
+
+  <Sheet>
+    <h2 slot="title" class="text-xl font-semibold">Screens</h2>
+    <figure class="m-0">
+      <figcaption class="mb-2 text-xs text-muted-foreground">Staff reports (Arabic UI).</figcaption>
+      <img src="/ribat/sheikh-reports-desktop.webp" alt="Reports dashboard" width={1440} height={900} loading="lazy" class="mx-auto max-w-3xl rounded-lg border shadow-sm" />
+    </figure>
+    <figure class="m-0 mt-6 text-center">
+      <figcaption class="mb-2 text-xs text-muted-foreground">Teacher memorization session.</figcaption>
+      <img src="/ribat/teacher-hifz-phone.webp" alt="Hifz session" width={780} height={1688} loading="lazy" class="mx-auto w-48 rounded-md border shadow-sm sm:w-56" />
+    </figure>
+  </Sheet>
+
+  <Sheet>
+    <h2 slot="title" class="text-xl font-semibold">Decisions I'd defend</h2>
+    <DeepDiagramSection client:load diagrams={deepDiagrams} />
+    <DeepDecisions client:load diagrams={ribatHome.diagrams} decisions={ribatHome.decisions} />
+  </Sheet>
+
+  <Sheet>
+    <h2 slot="title" class="text-xl font-semibold">API surface</h2>
+    <p class="mb-4 text-sm text-muted-foreground">132 routes under <code class="font-mono">/api/v1</code>, counted from the controllers.</p>
+    <div class="overflow-x-auto text-sm">
+      <table class="w-full border-collapse">
+        <thead><tr class="border-b text-left"><th class="py-2 pr-4">Area</th><th class="py-2 pr-4">Routes</th><th class="py-2 pr-4">Caller</th><th class="py-2">Authorization</th></tr></thead>
+        <tbody class="text-muted-foreground">
+          <tr class="border-b"><th class="py-2 pr-4 font-mono text-left text-foreground">/auth</th><td>7</td><td>Anyone with an account or a setup code</td><td>Rate-limited per IP, then a session cookie</td></tr>
+          <tr class="border-b"><th class="py-2 pr-4 font-mono text-left text-foreground">/members …</th><td>32</td><td>Staff; the public join form</td><td>Session, CSRF token, organization, permission</td></tr>
+          <tr class="border-b"><th class="py-2 pr-4 font-mono text-left text-foreground">/courses …</th><td>34</td><td>Staff; teachers for their own courses</td><td>Same chain, plus an active teaching assignment</td></tr>
+          <tr class="border-b"><th class="py-2 pr-4 font-mono text-left text-foreground">/sync …</th><td>19</td><td>Teachers, online and replaying offline</td><td>Checked again at replay time</td></tr>
+          <tr class="border-b"><th class="py-2 pr-4 font-mono text-left text-foreground">/wards …</th><td>22</td><td>Parents, students, staff</td><td>Only their own children and themselves</td></tr>
+          <tr class="border-b"><th class="py-2 pr-4 font-mono text-left text-foreground">/organization …</th><td>11</td><td>Mosque admins</td><td>Same chain</td></tr>
+          <tr class="border-b"><th class="py-2 pr-4 font-mono text-left text-foreground">/stats …</th><td>7</td><td>Admins; the orchestrator</td><td>Read-only</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-4 text-sm text-muted-foreground">CI runs formatting, lint, typecheck, unit tests, end-to-end tests against real Postgres and Redis, the build and a Docker image on every push.</p>
+    <nav class="mt-6 flex flex-col gap-2 text-sm font-medium">
+      <a href="https://github.com/Salad-man3/ribat" class="underline-offset-4 hover:underline">Read the code on GitHub</a>
+      <a href="/ghaya/" class="underline-offset-4 hover:underline">Ghaya Go, under the hood</a>
+      <a href="/" class="underline-offset-4 hover:underline">Back to the home page</a>
+    </nav>
+  </Sheet>
+</BaseLayout>

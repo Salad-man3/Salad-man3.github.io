@@ -2,53 +2,68 @@
 
 Live at <https://salad-man3.github.io/>
 
-A single page: who I am, the API I built, the bugs worth writing down, and how
-to reach me.
+Astro + React (islands) portfolio with **shadcn/ui**, Geist Sans/Mono, and Amiri for Arabic names. Plain-language project stories for everyone; **Technical details** panels and deep pages for implementation detail.
+
+## Stack
+
+- [Astro 5](https://astro.build/) static site
+- [shadcn/ui](https://ui.shadcn.com/) (Radix + Tailwind v4)
+- Interactive islands: screen tabs, technical-details collapsible, diagram lightbox, copy email
 
 ## Contents
 
 | Path | What it is |
 |------|------------|
-| `index.html` | The page |
-| `styles.css` | All styling — hand-authored, no framework |
-| `script.js` | Section index toggle, copy-email, scrollspy |
-| `404.html` | Not-found page, reuses `/styles.css` |
-| `cv/` | Printable CVs, Node.js and Laravel tracks |
+| `src/pages/index.astro` | Home: hero (no request trace), Ghaya, Ribat (`#ribat`), toolbox, contact |
+| `src/pages/ghaya/` | Ghaya Go under the hood |
+| `src/pages/ribat/` | Ribat under the hood |
+| `public/ghaya/`, `public/ribat/` | Screenshots, diagrams, tour video |
+| `public/cv/` | CV PDF (build output from career hub) |
+| `public/assets/icons/` | Toolbox icons |
 
-## Design notes
+## Local development
 
-Two grounds carry the argument the page is making. **Paper** is what I claim;
-the **dark console panels** are what the machine produced — request traces,
-incident reports. Evidence stays visually separable from assertion.
-
-The typographic rule: **labels are sans, machine values are mono.** Spline Sans
-Mono appears on routes, counts, cache keys, and dates — anywhere a machine
-wrote the string — and never just to make a label look technical. Instrument
-Sans does everything a person wrote.
-
-Colour is data. The green, amber, and red only ever attach to a real status —
-a response code, an incident's severity. Nothing is tinted for decoration.
-
-There is exactly one animation: the hero's call-count bar collapsing from five
-requests to two, once, on load. It is disabled under
-`prefers-reduced-motion`, where the end state renders directly.
-
-## The CVs are not edited here
-
-`cv/` is **build output**. The canonical source lives in the career-hub repo at
-`portfolio/cv/`; run `python3 portfolio/cv/sync_cv.py` there to publish changes
-into this repo, then commit them here. Editing `cv/` directly will be
-overwritten on the next sync.
-
-## Local preview
+Requires **Node 24+** (Astro 5).
 
 ```sh
-python3 -m http.server 8080
+npm install
+npm run dev
 ```
 
-Then open <http://localhost:8080>. Do not open the files over `file://` — the
-root-relative paths in `404.html` will not resolve.
+Open <http://localhost:4321>.
 
-## Deploy
+Production build:
 
-GitHub Pages serves the `main` branch root. Push to `main` to publish.
+```sh
+npm run build
+npm run preview   # serves dist/
+```
+
+## Deploy (GitHub Pages)
+
+`.github/workflows/deploy.yml` builds with `npm ci` and publishes `dist/` via GitHub Actions.
+
+One-time repo setting: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Until that switch, pushing `main` with only static HTML will not run this workflow’s output on Pages.
+
+## CV
+
+`public/cv/` is **build output**. Source lives in the career-hub repo; run `python3 portfolio/cv/sync_cv.py` there, then copy into `public/cv/` here.
+
+## Contrast check (optional)
+
+```sh
+python3 scripts/check_contrast.py
+```
+
+## Diagram sources
+
+- Ribat: Eraser exports in `public/ribat/diagrams/` (WebP)
+- Ghaya: SVGs in `public/ghaya/diagrams/`; Mermaid sources in `scripts/diagrams/`
+
+## Ribat on the public site
+
+Only **process/architecture** diagrams belong under `public/ribat/diagrams/` (Eraser exports). Do **not** copy ER or schema diagrams (`people-domain`, `platform-and-tenancy`, etc.) or `ribat/git-diagrams/` into `public/`. CI runs `python3 scripts/check_ribat_privacy.py` before build.
+
+Screenshots use the public Ribat **demo seed** (fake names and phones); that is intentional. Re-capture with `node ../scripts/capture-ribat-portfolio.mjs` from the career-hub repo when UI changes.

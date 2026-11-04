@@ -1,0 +1,16 @@
+flowchart LR
+  subgraph clients [Clients]
+    expo[Expo mobile]
+    cms[Next.js CMS]
+  end
+  api[NestJS API]
+  subgraph data [Data and services]
+    pg[(PostgreSQL)]
+    redis[(Redis)]
+    clerk[Clerk]
+  end
+  expo -->|Clerk JWT| api
+  cms -->|service key| api
+  api --> pg
+  api --> redis
+  api --> clerk

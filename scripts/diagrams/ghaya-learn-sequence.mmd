@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant App as Mobile app
+  participant API as NestJS API
+  participant Redis as Redis
+  Note over App,Redis: Before — cold start
+  App->>API: progress
+  App->>API: modules
+  App->>API: course progress
+  App->>API: lesson percent
+  Note over App,Redis: After — aggregated learn
+  App->>API: GET /users/me/learn
+  API->>Redis: cache snapshot
+  Redis-->>API: hit or miss
+  API-->>App: one payload
